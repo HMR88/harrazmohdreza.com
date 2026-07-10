@@ -11,7 +11,7 @@ Estimated time: ~20 minutes of work, then up to 24h for DNS to fully settle
 
 ## Part A — Put the site in your GitHub repo
 
-The seven site files must sit at the **root** of the repo, with `index.html`
+All site files must sit at the **root** of the repo, with `index.html`
 at the top level (not inside a subfolder).
 
 Files to commit:
@@ -20,13 +20,26 @@ index.html
 about.html
 work.html
 contact.html
+notes.html
+note-cog-iterations.html
 case-study-routing-automation.html
 case-study-arcgis-popups.html
 case-study-cog-tool.html
 styles.css
 main.js
+mindmap.js
+404.html
+robots.txt
+sitemap.xml
+favicon.svg
+favicon-48.png
+favicon-180.png
+og-image.png
+CNAME
 ```
-(You can also keep `DEPLOY.md` and `CLAUDE.md` in the repo — they won't affect the site.)
+(You can also keep `DEPLOY.md` and `CLAUDE.md` in the repo — they won't affect the site.
+The `CNAME` file holds your custom domain and is added automatically when you set it
+in Settings → Pages; it's committed here too so the domain survives any re-deploy.)
 
 **Using the terminal:**
 ```bash
