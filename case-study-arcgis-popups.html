@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive ArcGIS Map Popups — Harraz Mohd Reza</title>
+<meta name="description" content="Data-driven ArcGIS Arcade popups with embedded charts, growth analytics, and workforce talent profiles — zero external dependencies.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://harrazmohdreza.com/case-study-arcgis-popups.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harraz Mohd Reza">
+<meta property="og:title" content="Interactive ArcGIS Map Popups — Harraz Mohd Reza">
+<meta property="og:description" content="Map popups with embedded charts and analytics — zero external dependencies.">
+<meta property="og:url" content="https://harrazmohdreza.com/case-study-arcgis-popups.html">
+<meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
+<meta name="twitter:title" content="Interactive ArcGIS Map Popups — Harraz Mohd Reza">
+<meta name="twitter:description" content="Map popups with embedded charts and analytics — zero external dependencies.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-48.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="notes.html">Notes</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav__cta">Let’s talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero gridfield study">
+    <div class="wrap">
+      <nav class="crumb"><a href="index.html">Home</a><span class="sep">/</span><a href="work.html">Work</a><span class="sep">/</span><span>Case 02</span><span class="sep">/</span><span class="coord">ArcGIS Popups</span></nav>
+      <p class="hero__kicker"><span class="sq"></span>Case 02 · Commercial real estate · ArcGIS Arcade</p>
+      <h1>Interactive map popups that <span class="o">explain themselves</span></h1>
+      <p class="deck">Data-driven popups with embedded charts, growth analytics, and workforce talent profiles — computed and rendered entirely inside the map, with zero external dependencies.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Solution designer &amp; developer</dd></div>
+        <div><dt>Platform</dt><dd>ArcGIS Online / Enterprise</dd></div>
+        <div><dt>Technology</dt><dd>Esri Arcade expressions</dd></div>
+        <div><dt>Dependencies</dt><dd>None — fully self-contained</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- QUICK STATS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="stat__n">0</div><div class="stat__l">External dependencies</div></div>
+        <div class="stat"><div class="stat__n">11</div><div class="stat__l">Years visualized</div></div>
+        <div class="stat"><div class="stat__n">12</div><div class="stat__l">Occupation groups</div></div>
+        <div class="stat"><div class="stat__n">100<span class="o">%</span></div><div class="stat__l">Rendered in-map</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow eyebrow--orange">The problem</p>
+        <h2>The data was there. The insight wasn’t.</h2>
+        <p class="lead soft">A commercial real estate team needed to read market and workforce data <em>on the map</em>, at the moment of site selection — not by exporting tables into a separate report later.</p>
+        <p class="soft">Clicking a location returned raw fields: eleven population columns, dozens of occupation metrics. Technically complete, practically unreadable. The story — is this market growing? who lives here? — was buried.</p>
+      </div>
+      <div>
+        <ul class="marks">
+          <li>Analysts exported data to spreadsheets to see any trend at all.</li>
+          <li>Popups showed raw field names, not human meaning.</li>
+          <li>Charting tools meant external libraries, API calls, and offline fragility.</li>
+          <li>Every location had to be interpreted by hand, one at a time.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLE 1 — LIVE DEMO -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Deliverable 01 · Population trend</p>
+      <h2 class="measure">Eleven years of population, read at a glance.</h2>
+      <p class="lead soft measure" style="margin-bottom:30px;">The first popup turns eleven raw population fields (2015–2025) into a horizontal bar chart, a summary panel, and an automatic growth classification — all generated by a single Arcade expression. This is a faithful recreation; switch the sample location to watch the analytics recompute.</p>
+
+      <div class="demo-wrap">
+        <div>
+          <div class="popup-controls" role="group" aria-label="Sample location">
+            <button data-place="grow" class="on">Growing market</button>
+            <button data-place="stable">Stable market</button>
+            <button data-place="decline">Declining market</button>
+          </div>
+          <div class="popup-demo" id="popupDemo">
+            <div class="popup-demo__head">
+              <div class="popup-demo__ey">Population trend · 2015–2025</div>
+              <div class="popup-demo__place" id="popPlace">—</div>
+              <span class="popup-demo__badge" id="popBadge">—</span>
+            </div>
+            <div class="popup-demo__body">
+              <div class="popup-demo__cap">Population by year</div>
+              <div id="popBars"></div>
+              <div class="popup-demo__stats">
+                <div class="popup-demo__stat"><div class="k">2015 baseline</div><div class="v" id="popBase">—</div></div>
+                <div class="popup-demo__stat"><div class="k">2025 current</div><div class="v" id="popCur">—</div></div>
+                <div class="popup-demo__stat"><div class="k">10-yr change</div><div class="v" id="popChg">—</div></div>
+                <div class="popup-demo__stat"><div class="k">CAGR</div><div class="v" id="popCagr">—</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">How it works</p>
+          <div class="principles" style="margin-top:18px;">
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">01</span><h3 class="principle__t">Collect</h3><p class="principle__d">A null-safe helper pulls eleven yearly fields into a clean array, so blank or missing values never break the chart.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">02</span><h3 class="principle__t">Compute</h3><p class="principle__d">CAGR, year-over-year deltas, total change, and density are derived on the fly — no pre-processing, no service call.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">03</span><h3 class="principle__t">Classify</h3><p class="principle__d">The growth rate maps to a labelled, colour-coded trend so the headline reads itself.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">04</span><h3 class="principle__t">Render</h3><p class="principle__d">Inline HTML/CSS and embedded SVG icons draw the whole popup — nothing loaded from the network.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSIFICATION CODE -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Key technique</p>
+      <h2 class="measure">The headline classifies itself.</h2>
+      <p class="lead soft measure" style="margin-bottom:22px;">A single block turns a computed growth rate into the label and colour you see at the top of the popup — the same logic driving the live demo above.</p>
+      <div class="codeblock">
+        <div class="codeblock__bar"><span class="d"></span>Arcade · trend classification</div>
+        <pre><span class="com">// Dynamic trend classification from the 10-year CAGR</span>
+<span class="fn">var</span> trend = ""; <span class="fn">var</span> color = "";
+<span class="fn">if</span>      (cagr &gt;= 0.02)  { trend = <span class="str">"High growth"</span>;   color = <span class="str">"#1f7a34"</span>; }
+<span class="fn">else if</span> (cagr &gt;= 0.005) { trend = <span class="str">"Growing"</span>;       color = <span class="str">"#3C7A4E"</span>; }
+<span class="fn">else if</span> (cagr &gt;= -0.005){ trend = <span class="str">"Stable"</span>;        color = <span class="str">"#6b6459"</span>; }
+<span class="fn">else if</span> (cagr &gt;  -0.02) { trend = <span class="str">"Declining"</span>;     color = <span class="str">"#B0411F"</span>; }
+<span class="fn">else</span>                    { trend = <span class="str">"Sharp decline"</span>; color = <span class="str">"#8a2d16"</span>; }</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLE 2 -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow eyebrow--orange">Deliverable 02 · Talent profile</p>
+        <h2>Who works here — by the hexagon.</h2>
+        <p class="lead soft">The second popup profiles the resident workforce for an H3 hex grid: twelve occupation groups, ranked by their share of local workers, with growth-since-2020, median wages, and a full breakdown table — each section collapsible so users drill in only as far as they need.</p>
+        <p class="soft">It also derives a plain-language headline (“Technology stronghold,” “Mixed workforce”) and a day-vs-night ratio that flags whether a hex is a job center, a bedroom community, or mixed use.</p>
+        <div class="skills mt-s">
+          <span class="skill">H3 hex grid</span>
+          <span class="skill">Workforce composition</span>
+          <span class="skill">Growth since 2020</span>
+          <span class="skill">ZIP → hex interpolation</span>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Workforce composition · sample hex</p>
+        <div style="border:1px solid var(--line);background:var(--bone-raise);padding:22px 24px;margin-top:14px;">
+          <div class="compbar"><span>Technology</span><span class="track"><span style="width:100%"></span></span><span class="pct">22.4%</span></div>
+          <div class="compbar"><span>Banking &amp; Finance</span><span class="track"><span style="width:78%"></span></span><span class="pct">17.5%</span></div>
+          <div class="compbar"><span>Registered Nurses</span><span class="track"><span style="width:58%"></span></span><span class="pct">13.0%</span></div>
+          <div class="compbar"><span>Engineering</span><span class="track"><span style="width:44%"></span></span><span class="pct">9.9%</span></div>
+          <div class="compbar"><span>Warehouse &amp; Logistics</span><span class="track"><span style="width:33%"></span></span><span class="pct">7.4%</span></div>
+          <p class="soft" style="font-family:var(--font-mono);font-size:.68rem;letter-spacing:.04em;margin:14px 0 0;color:var(--ink-3);">Headline: Technology-leaning workforce · Job center (ratio 1.6) · Sample data</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Outcome &amp; impact</p>
+      <h2 class="measure">What changed.</h2>
+      <div class="outcomes" style="margin-top:30px;">
+        <div class="oc"><h3><span class="mk"></span>Insight at the click</h3><p>Trends and workforce mix read instantly on the map — no export, no separate report.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Progressive disclosure</h3><p>Collapsible sections keep popups clean while letting analysts drill all the way to a full table.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Works anywhere, offline</h3><p>Zero external dependencies means it renders instantly on desktop or a field device, with no API calls.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Scales to thousands</h3><p>One Arcade expression applies to every feature in a layer without performance cost or maintenance overhead.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Skills demonstrated</p>
+      <h2>What this shows.</h2>
+      <div class="skills mt-s">
+        <span class="skill">Esri Arcade — data, analytics &amp; HTML generation</span>
+        <span class="skill">Data visualization from raw fields</span>
+        <span class="skill">Defensive, null-safe programming</span>
+        <span class="skill">Self-contained, zero-dependency delivery</span>
+        <span class="skill">Designing for progressive disclosure</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wrap ctaband">
+    <div class="ctaband__inner">
+      <div class="gridfield"></div>
+      <h2>Have map data nobody can read?</h2>
+      <p>I turn raw GIS fields into popups that explain themselves — charts, analytics, and plain-language headlines, right inside the map.</p>
+      <div class="ctaband__actions">
+        <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
+        <a href="work.html" class="btn btn--ghost" style="color:var(--screen-ink);border-color:var(--screen-line);">More work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <a href="index.html" class="wordmark" style="font-size:.82rem;"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+        <p class="soft" style="font-size:.9rem;margin-top:14px;max-width:34ch;">Connecting disparate data systems into one source of business-critical truth.</p>
+      </div>
+      <div><h4>Site</h4><ul><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
+    </div>
+    <div class="foot__base">
+      <span>All figures and locations shown are fictional sample data, for demonstration only.</span>
+      <span>© <span data-year>2026</span> Harraz Mohd Reza</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+<script>
+(function(){
+  var YEARS=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  var PLACES={
+    grow:{name:"Cedar Grove, IL", pop:[42100,43600,45200,46900,48700,50600,52100,53900,55600,57200,58900]},
+    stable:{name:"Midtown Flats, IL", pop:[50800,50950,51100,50900,51200,51050,51300,51150,51250,51200,51400]},
+    decline:{name:"Harbor West, IL", pop:[68200,67100,66000,64800,63500,62100,60800,59600,58500,57600,56800]}
+  };
+  function classify(cagr){
+    if(cagr>=0.02)   return {t:"High growth",   c:"#1f7a34"};
+    if(cagr>=0.005)  return {t:"Growing",       c:"#3C7A4E"};
+    if(cagr>=-0.005) return {t:"Stable",        c:"#6b6459"};
+    if(cagr>-0.02)   return {t:"Declining",     c:"#B0411F"};
+    return {t:"Sharp decline", c:"#8a2d16"};
+  }
+  var fmt=function(n){return Math.round(n).toLocaleString();};
+  var bars=document.getElementById("popBars");
+  function render(key){
+    var p=PLACES[key], pop=p.pop, max=Math.max.apply(null,pop);
+    var first=pop[0], last=pop[pop.length-1];
+    var cagr=Math.pow(last/first,1/10)-1;
+    var chg=(last-first)/first*100;
+    var cls=classify(cagr);
+    document.getElementById("popPlace").textContent=p.name;
+    var badge=document.getElementById("popBadge");
+    badge.textContent=cls.t; badge.style.background=cls.c; badge.style.color="#fff";
+    var html="";
+    for(var i=0;i<YEARS.length;i++){
+      var w=Math.round(pop[i]/max*100);
+      var cur=i===YEARS.length-1?" cur":"";
+      html+='<div class="popup-demo__row'+cur+'"><span class="yr">'+YEARS[i]+'</span>'+
+            '<span class="popup-demo__bar"><span style="width:'+w+'%"></span></span>'+
+            '<span class="val">'+fmt(pop[i])+'</span></div>';
+    }
+    bars.innerHTML=html;
+    document.getElementById("popBase").textContent=fmt(first);
+    document.getElementById("popCur").textContent=fmt(last);
+    document.getElementById("popChg").textContent=(chg>=0?"+":"")+chg.toFixed(1)+"%";
+    document.getElementById("popCagr").textContent=(cagr>=0?"+":"")+(cagr*100).toFixed(2)+"%";
+  }
+  var btns=document.querySelectorAll(".popup-controls button");
+  btns.forEach(function(b){
+    b.addEventListener("click",function(){
+      btns.forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");
+      render(b.getAttribute("data-place"));
+    });
+  });
+  render("grow");
+})();
+</script>
+</body>
+</html>
