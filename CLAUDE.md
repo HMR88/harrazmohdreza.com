@@ -29,7 +29,7 @@ case-study-arcgis-popups.html       Case 02 — ArcGIS Arcade popups (live popul
 case-study-cog-tool.html            Case 03 — Network Center of Gravity tool
 styles.css                          THE shared design system (single source of truth)
 main.js                             Mobile nav toggle + footer year
-mindmap.js                          Home-page capability map (collapsible tree + hover-linked connections)
+mindmap.js                          Home-page capability map — RADIAL layout (center hub, expandable phases, hover-traced connections; self-renders into #capmap; phone outline fallback)
 notes.html                          Notes/field-log index
 note-cog-iterations.html            Field note 01 (draft for review)
 404.html, robots.txt, sitemap.xml   Infrastructure
