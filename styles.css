@@ -86,7 +86,7 @@ a{color:inherit;}
   text-decoration:none;color:var(--ink-2);padding:6px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
 .nav a:hover,.nav a[aria-current="page"]{color:var(--ink);border-color:var(--orange);}
 .nav__cta{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-  text-decoration:none;background:var(--ink);color:var(--bone);padding:9px 15px;transition:background .15s;}
+  text-decoration:none;background:var(--ink);color:#fff;padding:9px 24px;transition:background .15s;}
 .nav__cta:hover{background:var(--orange-deep);border-color:transparent !important;}
 .navtoggle{display:none;background:none;border:1px solid var(--line-2);padding:8px 10px;cursor:pointer;
   font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);}
@@ -165,11 +165,11 @@ p{margin:0 0 1.05em;}
 .workcard:hover{background:var(--bone-raise);padding-left:14px;}
 .workcard__idx{font-family:var(--font-mono);font-size:.82rem;color:var(--ink-3);letter-spacing:.08em;align-self:start;padding-top:6px;}
 .workcard__main{min-width:0;}
-.workcard__meta{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--orange-deep);margin-bottom:8px;}
-.workcard__title{font-family:var(--font-head);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.45rem);
-  line-height:1.2;letter-spacing:-.015em;margin:0 0 .35em;}
-.workcard__desc{color:var(--ink-2);font-size:.98rem;margin:0;max-width:60ch;}
+.workcard__meta{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--orange-deep);margin:0 0 10px;}
+.workcard__title{display:block;font-family:var(--font-head);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.45rem);
+  line-height:1.2;letter-spacing:-.015em;margin:0 0 .3em;}
+.workcard__desc{display:block;color:var(--ink-2);font-size:.98rem;margin:0;max-width:60ch;}
 .workcard__go{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-2);white-space:nowrap;align-self:start;padding-top:6px;display:flex;align-items:center;gap:.5em;}
 .workcard:hover .workcard__go{color:var(--orange-deep);}
@@ -228,7 +228,8 @@ p{margin:0 0 1.05em;}
 .backlink:hover{color:var(--orange-deep);}
 
 .meta{display:flex;flex-wrap:wrap;gap:0;margin-top:38px;border-top:1px solid var(--line);}
-.meta div{flex:1 1 170px;padding:18px 22px 16px 0;border-right:1px solid var(--line);}
+.meta div{flex:1 1 170px;padding:18px 26px 16px 20px;border-right:1px solid var(--line);}
+.meta div:first-child{padding-left:0;}
 .meta div:last-child{border-right:none;}
 .meta dt{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;}
 .meta dd{margin:0;font-weight:600;font-size:.95rem;}
@@ -307,8 +308,8 @@ p{margin:0 0 1.05em;}
 /* flow diagram */
 .flow{display:flex;flex-direction:column;align-items:center;}
 .node{border:1px solid var(--line-2);background:var(--bone-raise);padding:14px 20px;text-align:center;max-width:520px;width:100%;}
-.node .nl{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px;}
-.node .nt{font-size:.95rem;font-weight:600;}
+.node .nl{display:block;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;}
+.node .nt{display:block;font-size:.95rem;font-weight:600;line-height:1.35;}
 .node.start{background:var(--ink);color:var(--bone);border-color:var(--ink);max-width:340px;}
 .node.leaf{max-width:300px;}
 .node.leaf .nt{font-family:var(--font-mono);font-size:.84rem;}
@@ -317,11 +318,13 @@ p{margin:0 0 1.05em;}
 .leaf-both{border-color:var(--c-both);box-shadow:0 0 0 1px var(--c-both) inset;}.leaf-both .nl{color:var(--c-both);}
 .leaf-stop{background:var(--bone-sink);color:var(--ink-2);}.leaf-stop .nl{color:var(--c-stop);}
 .connector{width:2px;height:24px;background:var(--line-2);}
-.branch{display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,4vw,40px);width:100%;}
+.branch{display:flex;align-items:flex-start;justify-content:center;gap:clamp(16px,4vw,40px);width:100%;position:relative;}
+.branch::before{content:"";position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--line-2);}
 .branch-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;}
+.branch-col::before{content:"";width:2px;height:16px;background:var(--line-2);}
 .branch-tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:4px 0;}
 .branch-tag.no{color:var(--ink);}
-@media(max-width:680px){.flow .branch{flex-direction:column;align-items:center;}.flow .branch .connector{height:18px;}}
+@media(max-width:680px){.flow .branch{flex-direction:column;align-items:center;}.flow .branch .connector{height:18px;}.branch::before{display:none;}}
 
 /* =====================================================
    INTERACTIVE ROUTING CONSOLE (case study signature)
