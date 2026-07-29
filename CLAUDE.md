@@ -31,7 +31,8 @@ styles.css                          THE shared design system (single source of t
 main.js                             Mobile nav toggle + footer year
 mindmap.js                          Home-page capability map — RADIAL layout (center hub, expandable phases, hover-traced connections; self-renders into #capmap; phone outline fallback)
 notes.html                          Notes/field-log index
-note-cog-iterations.html            Field note 01 (draft for review)
+note-directing-ai.html              Field note: directing AI (judgment & governance)
+note-cog-iterations.html            Field note: thirteen iterations (COG build)
 404.html, robots.txt, sitemap.xml   Infrastructure
 favicon.svg / favicon-*.png         Brand favicons
 og-image.png                        1200x630 social share card
@@ -121,6 +122,17 @@ GoatCounter setup: (1) create account at goatcounter.com, pick a code e.g. `harr
 (2) before `</body>` on every page add:
 `<script data-goatcounter="https://harrazmohdreza.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>`
 (3) extend the CSP meta on every page: add `https://gc.zgo.at` to script-src and `https://harrazmohdreza.goatcounter.com` to connect-src.
+
+
+## Copy voice rules (IMPORTANT: all site text must follow these)
+Written to sound like Harraz, not AI-generated. Hard rules:
+- NO em dashes anywhere in visible text, titles, labels, or code comments. Use commas, periods, colons, or the mono separator "·".
+- No "not X, but Y" constructions. No punchy sentence fragments for drama. No clever aphorisms.
+- Light contractions (it's, I'll); keep "I am" for weightier statements.
+- Direct and confident. The site sells Harraz's services; hedging undersells.
+- Harraz's natural idiom (from his own writing, use it): "rest assured", "head on", "tried and true", "one and done", rhetorical questions, longer connected sentences, plain verbs like leverage, incorporate, stress.
+- Locked phrases, never alter: "Location Intelligence is Business Intelligence." / "See the whole picture." / "Clarity from complexity."
+- Much of the capability-map (mindmap.js) text is Harraz's own writing from his review deck. Do not "improve" it; only fix real typos, and confirm with Harraz first.
 
 ## Current status / open items
 - [x] GitHub, LinkedIn confirmed and applied; email fully private (form-only contact).
