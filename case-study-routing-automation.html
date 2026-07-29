@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conditional Notification &amp; Routing Automation — Harraz Mohd Reza</title>
+<title>Conditional Notification &amp; Routing Automation · Harraz Mohd Reza</title>
 <meta name="description" content="A Power Automate cloud flow that filters new records and routes notifications to the right reviewer, with a fallback safety net.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://harrazmohdreza.com/case-study-routing-automation.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
-<meta property="og:title" content="Conditional Routing Automation — Harraz Mohd Reza">
+<meta property="og:title" content="Conditional Routing Automation · Harraz Mohd Reza">
 <meta property="og:description" content="A Power Automate flow that routes every record to the right reviewer, automatically.">
 <meta property="og:url" content="https://harrazmohdreza.com/case-study-routing-automation.html">
 <meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
-<meta name="twitter:title" content="Conditional Routing Automation — Harraz Mohd Reza">
+<meta name="twitter:title" content="Conditional Routing Automation · Harraz Mohd Reza">
 <meta name="twitter:description" content="A Power Automate flow that routes every record to the right reviewer, automatically.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
@@ -51,7 +51,7 @@
       <nav class="crumb"><a href="index.html">Home</a><span class="sep">/</span><a href="work.html">Work</a><span class="sep">/</span><span>Case 01</span><span class="sep">/</span><span class="coord">Routing Automation</span></nav>
       <p class="hero__kicker"><span class="sq"></span>Case 01 · Power Automate · Cloud flow</p>
       <h1>Conditional Notification &amp; <span class="o">Routing</span> Automation</h1>
-      <p class="deck">An event-driven flow that reads every new record, filters out the ones that don’t need action, and sends each notification to the right reviewer — with a fallback so nothing is ever dropped silently.</p>
+      <p class="deck">An event-driven flow that reads every new record, filters out the ones that don't need action, and sends each notification to the right reviewer. A fallback path makes sure nothing ever gets dropped silently.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Solution designer &amp; builder</dd></div>
         <div><dt>Platform</dt><dd>Microsoft Power Automate</dd></div>
@@ -105,11 +105,11 @@
             <div class="dests">
               <div class="dest" data-key="A"><span class="swatch"></span><div class="who">Reviewer A</div><div class="addr">reviewer.a@example.com</div><div class="codes">ALPHA · CHARLIE<br>FOXTROT · VICTOR</div></div>
               <div class="dest" data-key="B"><span class="swatch"></span><div class="who">Reviewer B</div><div class="addr">reviewer.b@example.com</div><div class="codes">HOTEL · LIMA<br>WHISKEY · ZULU</div></div>
-              <div class="dest" data-key="BOTH"><span class="swatch"></span><div class="who">Both</div><div class="addr">a@ + b@example.com</div><div class="codes">any unrecognized<br>ending — manual review</div></div>
+              <div class="dest" data-key="BOTH"><span class="swatch"></span><div class="who">Both</div><div class="addr">a@ + b@example.com</div><div class="codes">any unrecognized<br>ending → manual review</div></div>
             </div>
           </div>
         </div>
-        <div class="console__foot">Logic mirrors the live flow exactly. Sample data; all addresses fictional.</div>
+        <div class="console__foot">The logic here mirrors the live flow exactly. All data and addresses are fictional samples.</div>
       </div>
     </div>
   </section>
@@ -131,15 +131,15 @@
     <div class="wrap split">
       <div>
         <p class="eyebrow eyebrow--orange">The problem</p>
-        <h2>A person was the routing rule.</h2>
-        <p class="lead soft">New records landed in a shared tracking list all day. Each one needed someone to read it, decide who owned it, and forward the details by hand.</p>
-        <p class="soft">It worked until it didn’t — and it didn’t scale. Adding a second reviewer turned a fuzzy mental rulebook into something genuinely easy to get wrong.</p>
+        <h2>The routing logic was a manual review process.</h2>
+        <p class="lead soft">New records landed in a SharePoint list. Each one needed to be reviewed and forwarded to the appropriate individual based on a set of predefined parameters.</p>
+        <p class="soft">The process held up day to day, but it did not scale. As the organization grew, and more conditional variables dictated the assignment of new records, the fuzzy mental rulebook became easy to get wrong and consumed more time of the reviewer.</p>
       </div>
       <div>
         <ul class="marks">
           <li>Every new record waited on a human before anyone was notified.</li>
           <li>Triage was slow, easy to forget, and simple to get wrong.</li>
-          <li>Records occasionally reached the wrong reviewer — or no one at all.</li>
+          <li>Records occasionally reached the wrong reviewer, or no one at all.</li>
           <li>Growing the team made the manual routing rules harder to keep straight.</li>
         </ul>
       </div>
@@ -150,14 +150,14 @@
   <section class="section">
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">The solution</p>
-      <h2 class="measure">One flow, five moves.</h2>
-      <p class="lead soft measure" style="margin-bottom:30px;">A single event-driven cloud flow replaces the entire manual triage step — running the moment a record appears, every time, without anyone watching.</p>
+      <h2 class="measure">One flow now handles all of it in five steps.</h2>
+      <p class="lead soft measure" style="margin-bottom:30px;">A single event-driven cloud flow replaces the entire manual triage step. It runs the moment a record appears, every time, without anyone watching.</p>
       <div class="steps">
-        <div class="step"><div class="step__num">01 — Trigger</div><h3>Catch the new record</h3><p>Fires automatically the moment an item is created in the SharePoint list.</p></div>
-        <div class="step"><div class="step__num">02 — Validate</div><h3>Filter out the noise</h3><p>Records with a non-actionable status — <code>Denied</code>, <code>Closed/Lost</code>, <code>Not Applicable</code>, <code>Competition</code> — are ignored.</p></div>
-        <div class="step"><div class="step__num">03 — Evaluate</div><h3>Read the routing code</h3><p>Extracts only the final segment of a code like <code>REC-4014XX-ABCDEFG-ALPHA</code> and normalizes its casing.</p></div>
-        <div class="step"><div class="step__num">04 — Route</div><h3>Match it to a reviewer</h3><p>Sends to Reviewer A or Reviewer B by the code’s ending — or to both when the ending isn’t recognized.</p></div>
-        <div class="step" style="grid-column:1/-1;"><div class="step__num">05 — Send</div><h3>Deliver a formatted notification</h3><p>Emails the record’s key fields and a direct link back to the record, so the reviewer can act in one click.</p></div>
+        <div class="step"><div class="step__num">01 · Trigger</div><h3>Catch the new record</h3><p>Fires automatically the moment an item is created in the SharePoint list.</p></div>
+        <div class="step"><div class="step__num">02 · Validate</div><h3>Filter out the noise</h3><p>Records with a non-actionable status (<code>Denied</code>, <code>Closed/Lost</code>, <code>Not Applicable</code>, or <code>Competition</code>) get ignored.</p></div>
+        <div class="step"><div class="step__num">03 · Evaluate</div><h3>Read the routing code</h3><p>Extracts only the final segment of a code like <code>REC-4014XX-ABCDEFG-ALPHA</code> and normalizes its casing.</p></div>
+        <div class="step"><div class="step__num">04 · Route</div><h3>Match it to a reviewer</h3><p>Sends to Reviewer A or Reviewer B based on the code's ending, or to both reviewers when the ending isn't recognized.</p></div>
+        <div class="step" style="grid-column:1/-1;"><div class="step__num">05 · Send</div><h3>Deliver a formatted notification</h3><p>Emails the record’s key fields and a direct link back to the record, so the reviewer can act in one click.</p></div>
       </div>
     </div>
   </section>
@@ -167,11 +167,11 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">Key technique</p>
       <h2 class="measure">Extracting the routing code.</h2>
-      <p class="lead soft measure" style="margin-bottom:30px;">Instead of a brittle “ends&nbsp;with” check that false-matches on text earlier in the code, the flow isolates the exact final segment in a single expression.</p>
+      <p class="lead soft measure" style="margin-bottom:30px;">A simple "ends with" check would false-match on text earlier in the code, so the flow isolates the exact final segment in a single expression instead.</p>
       <div class="pipeline">
         <div class="pipe-code"><span class="fn">toUpper</span>(<span class="fn">last</span>(<span class="fn">split</span>(triggerBody()?['recordCode'], <span class="str">'-'</span>)))</div>
         <div class="pipe-row"><span class="t">split( … , '-')</span><p class="d">Breaks the code into its hyphen-delimited parts.</p></div>
-        <div class="pipe-row"><span class="t">last( … )</span><p class="d">Grabs only the final segment — the routing key.</p></div>
+        <div class="pipe-row"><span class="t">last( … )</span><p class="d">Grabs only the final segment, which is the routing key.</p></div>
         <div class="pipe-row"><span class="t">toUpper( … )</span><p class="d">Makes the match case-insensitive and resilient.</p></div>
       </div>
     </div>
@@ -232,7 +232,7 @@
         <div class="oc"><h3><span class="mk"></span>Triage removed</h3><p>The daily manual review-and-forward step is gone, freeing up coordinator time.</p></div>
         <div class="oc"><h3><span class="mk"></span>Right reviewer, reliably</h3><p>Records consistently reach their owner instead of depending on someone remembering the rule.</p></div>
         <div class="oc"><h3><span class="mk"></span>Nothing slips through</h3><p>Unrecognized codes are escalated to everyone rather than dropped silently.</p></div>
-        <div class="oc"><h3><span class="mk"></span>Easy to grow</h3><p>Adding a reviewer or a new code is a small, contained edit — not a rewrite.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Easy to grow</h3><p>Adding a reviewer or a new code is a small, contained edit rather than a rewrite.</p></div>
       </div>
     </div>
   </section>
@@ -244,8 +244,8 @@
         <p class="eyebrow eyebrow--orange">Skills demonstrated</p>
         <h2>What this shows.</h2>
         <div class="skills mt-s">
-          <span class="skill">Cloud flow design — triggers, conditions, nested branching</span>
-          <span class="skill">Expression functions — <code>split</code> · <code>last</code> · <code>toUpper</code></span>
+          <span class="skill">Cloud flow design: triggers, conditions, nested branching</span>
+          <span class="skill">Expression functions: <code>split</code> · <code>last</code> · <code>toUpper</code></span>
           <span class="skill">Designing for edge cases &amp; graceful fallbacks</span>
           <span class="skill">Turning informal business rules into reliable logic</span>
         </div>
@@ -293,7 +293,7 @@
       <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
     </div>
     <div class="foot__base">
-      <span>All names, emails, codes &amp; URLs are fictional — for demonstration only.</span>
+      <span>All names, emails, codes, and URLs are fictional and for demonstration only.</span>
       <span>© <span data-year>2026</span> Harraz Mohd Reza</span>
     </div>
   </div>
@@ -329,14 +329,14 @@
     dests.forEach(function(d){d.classList.toggle('active',verdict===d.getAttribute('data-key'));});
     if(verdict==='STOP'){
       railVerd.textContent='halt'; railVerd.style.color='var(--c-stop)';
-      outcome.innerHTML='<span class="tag">filtered</span><span style="color:var(--c-stop)">Status <b style="color:var(--c-stop)">'+status+'</b> is non-actionable — the flow stops. No email sent.</span>';
+      outcome.innerHTML='<span class="tag">filtered</span><span style="color:var(--c-stop)">Status <b style="color:var(--c-stop)">'+status+'</b> is non-actionable, so the flow stops. No email gets sent.</span>';
     }else{
       railVerd.style.color=COLORS[verdict];
       var to,who;
       if(verdict==='A'){who='Reviewer A';to='reviewer.a@example.com';railVerd.textContent='reviewer a';}
       else if(verdict==='B'){who='Reviewer B';to='reviewer.b@example.com';railVerd.textContent='reviewer b';}
       else{who='Both reviewers';to='reviewer.a@example.com, reviewer.b@example.com';railVerd.textContent='both';}
-      outcome.innerHTML='<span class="tag">send</span><span>To <b>'+who+'</b> — <span style="color:var(--screen-faint)">'+to+'</span></span>';
+      outcome.innerHTML='<span class="tag">send</span><span>To <b>'+who+'</b> · <span style="color:var(--screen-faint)">'+to+'</span></span>';
     }
   }
   statusSel.addEventListener('change',render);

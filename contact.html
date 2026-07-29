@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Harraz Mohd Reza</title>
+<title>Contact · Harraz Mohd Reza</title>
 <meta name="description" content="Get in touch about geospatial analytics, automation, and connecting your data systems.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://harrazmohdreza.com/contact.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
-<meta property="og:title" content="Contact — Harraz Mohd Reza">
+<meta property="og:title" content="Contact · Harraz Mohd Reza">
 <meta property="og:description" content="Get in touch about geospatial analytics, automation, and connecting your data systems.">
 <meta property="og:url" content="https://harrazmohdreza.com/contact.html">
 <meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
-<meta name="twitter:title" content="Contact — Harraz Mohd Reza">
+<meta name="twitter:title" content="Contact · Harraz Mohd Reza">
 <meta name="twitter:description" content="Get in touch about geospatial analytics, automation, and connecting your data systems.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
@@ -48,7 +48,7 @@
     <div class="wrap">
       <p class="hero__kicker"><span class="sq"></span>Contact</p>
       <h1>Let’s <span class="o">connect</span>.</h1>
-      <p class="deck">Whether you’re hiring, scoping a project, or just have a tangle of systems that won’t cooperate — I’d like to hear about it.</p>
+      <p class="deck">Whether you’re hiring, scoping a project, or just have a tangle of systems that won’t cooperate, I’d like to hear about it.</p>
     </div>
   </section>
 
@@ -60,7 +60,7 @@
           <div class="method" style="cursor:default;">
             <div class="k">Direct line</div>
             <div class="v">The form <span class="o">→</span> my inbox</div>
-            <p class="soft" style="font-size:.82rem;margin:8px 0 0;">Messages reach me privately — no email address exposed anywhere on this site.</p>
+            <p class="soft" style="font-size:.82rem;margin:8px 0 0;">Messages reach me privately, no email address exposed anywhere on this site.</p>
           </div>
           <a class="method" href="https://github.com/HMR88">
             <div class="k">GitHub</div>
@@ -103,7 +103,7 @@
             <textarea id="cf-msg" name="message" maxlength="4000" required></textarea>
           </div>
           <button type="submit" class="btn btn--solid" id="cf-send">Send message →</button>
-          <p class="soft" id="cf-status" role="status" style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;margin:0;">Sent privately to my inbox — no email app needed, no address exposed.</p>
+          <p class="soft" id="cf-status" role="status" style="font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;margin:0;">Sent privately to my inbox, no email app needed, no address exposed.</p>
         </form>
       </div>
     </div>
@@ -129,7 +129,7 @@
 <script src="main.js"></script>
 <script>
   // Submissions POST to Formspree, which forwards to Harraz's inbox privately.
-  // The endpoint ID is anonymous — it reveals no email address. Setup: CLAUDE.md.
+  // The endpoint ID is anonymous, it reveals no email address. Setup: CLAUDE.md.
   var FORM_ENDPOINT = 'https://formspree.io/f/xaqgrzqy';
   var form = document.getElementById('contactForm');
   var statusEl = document.getElementById('cf-status');
@@ -139,7 +139,7 @@
     // Honeypot: real people never see this field; bots that fill it get dropped.
     if (document.getElementById('cf-website').value) { return; }
     if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
-      statusEl.textContent = 'The form is being connected — meanwhile, reach me on LinkedIn (link on the left).';
+      statusEl.textContent = 'The form is being connected, meanwhile, reach me on LinkedIn (link on the left).';
       return;
     }
     sendBtn.disabled = true;
@@ -151,13 +151,13 @@
     }).then(function (r) {
       if (r.ok) {
         form.reset();
-        statusEl.textContent = 'Sent — thank you. I read every message and reply personally.';
+        statusEl.textContent = 'Sent, thank you. I read every message and reply personally.';
       } else {
-        statusEl.textContent = 'Something went wrong — please try again, or reach me on LinkedIn.';
+        statusEl.textContent = 'Something went wrong, please try again, or reach me on LinkedIn.';
       }
       sendBtn.disabled = false;
     }).catch(function () {
-      statusEl.textContent = 'Network hiccup — please try again, or reach me on LinkedIn.';
+      statusEl.textContent = 'Network hiccup, please try again, or reach me on LinkedIn.';
       sendBtn.disabled = false;
     });
   });
