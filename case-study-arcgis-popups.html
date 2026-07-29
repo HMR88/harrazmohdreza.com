@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive ArcGIS Map Popups — Harraz Mohd Reza</title>
-<meta name="description" content="Data-driven ArcGIS Arcade popups with embedded charts, growth analytics, and workforce talent profiles — zero external dependencies.">
+<title>Interactive ArcGIS Map Popups · Harraz Mohd Reza</title>
+<meta name="description" content="Data-driven ArcGIS Arcade popups with embedded charts, growth analytics, and workforce talent profiles, zero external dependencies.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://harrazmohdreza.com/case-study-arcgis-popups.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
-<meta property="og:title" content="Interactive ArcGIS Map Popups — Harraz Mohd Reza">
-<meta property="og:description" content="Map popups with embedded charts and analytics — zero external dependencies.">
+<meta property="og:title" content="Interactive ArcGIS Map Popups · Harraz Mohd Reza">
+<meta property="og:description" content="Map popups with embedded charts and analytics, zero external dependencies.">
 <meta property="og:url" content="https://harrazmohdreza.com/case-study-arcgis-popups.html">
 <meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
-<meta name="twitter:title" content="Interactive ArcGIS Map Popups — Harraz Mohd Reza">
-<meta name="twitter:description" content="Map popups with embedded charts and analytics — zero external dependencies.">
+<meta name="twitter:title" content="Interactive ArcGIS Map Popups · Harraz Mohd Reza">
+<meta name="twitter:description" content="Map popups with embedded charts and analytics, zero external dependencies.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
 <link rel="apple-touch-icon" href="favicon-180.png">
@@ -51,12 +51,12 @@
       <nav class="crumb"><a href="index.html">Home</a><span class="sep">/</span><a href="work.html">Work</a><span class="sep">/</span><span>Case 02</span><span class="sep">/</span><span class="coord">ArcGIS Popups</span></nav>
       <p class="hero__kicker"><span class="sq"></span>Case 02 · ArcGIS Arcade</p>
       <h1>Interactive map popups that <span class="o">explain themselves</span></h1>
-      <p class="deck">Data-driven popups with embedded charts, growth analytics, and workforce talent profiles — computed and rendered entirely inside the map, with zero external dependencies.</p>
+      <p class="deck">Data-driven popups with embedded charts, growth analytics, and workforce talent profiles, computed and rendered entirely inside the map, with zero external dependencies.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Solution designer &amp; developer</dd></div>
         <div><dt>Platform</dt><dd>ArcGIS Online / Enterprise</dd></div>
         <div><dt>Technology</dt><dd>Esri Arcade expressions</dd></div>
-        <div><dt>Dependencies</dt><dd>None — fully self-contained</dd></div>
+        <div><dt>Dependencies</dt><dd>None, fully self-contained</dd></div>
       </dl>
     </div>
   </section>
@@ -79,8 +79,8 @@
       <div>
         <p class="eyebrow eyebrow--orange">The problem</p>
         <h2>The data was there. The insight wasn’t.</h2>
-        <p class="lead soft">A commercial real estate team needed to read market and workforce data <em>on the map</em>, at the moment of site selection — not by exporting tables into a separate report later.</p>
-        <p class="soft">Clicking a location returned raw fields: eleven population columns, dozens of occupation metrics. Technically complete, practically unreadable. The story — is this market growing? who lives here? — was buried.</p>
+        <p class="lead soft">A commercial real estate team needed to read market and workforce data <em>on the map</em>, at the moment of site selection, not by exporting tables into a separate report later.</p>
+        <p class="soft">Clicking a location returned raw fields: eleven population columns and dozens of occupation metrics. It was technically complete but practically unreadable. The real story, whether this market is growing and who actually lives here, was buried in the numbers.</p>
       </div>
       <div>
         <ul class="marks">
@@ -93,12 +93,12 @@
     </div>
   </section>
 
-  <!-- DELIVERABLE 1 — LIVE DEMO -->
+  <!-- DELIVERABLE 1, LIVE DEMO -->
   <section class="section">
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">Deliverable 01 · Population trend</p>
-      <h2 class="measure">Eleven years of population, read at a glance.</h2>
-      <p class="lead soft measure" style="margin-bottom:30px;">The first popup turns eleven raw population fields (2015–2025) into a horizontal bar chart, a summary panel, and an automatic growth classification — all generated by a single Arcade expression. This is a faithful recreation; switch the sample location to watch the analytics recompute.</p>
+      <h2 class="measure">Eleven years of population data, read at a glance.</h2>
+      <p class="lead soft measure" style="margin-bottom:30px;">The first popup turns eleven raw population fields (2015–2025) into a horizontal bar chart, a summary panel, and an automatic growth classification, all generated by a single Arcade expression. This is a faithful recreation; switch the sample location to watch the analytics recompute.</p>
 
       <div class="demo-wrap">
         <div>
@@ -129,9 +129,9 @@
           <p class="eyebrow">How it works</p>
           <div class="principles" style="margin-top:18px;">
             <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">01</span><h3 class="principle__t">Collect</h3><p class="principle__d">A null-safe helper pulls eleven yearly fields into a clean array, so blank or missing values never break the chart.</p></div></div>
-            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">02</span><h3 class="principle__t">Compute</h3><p class="principle__d">CAGR, year-over-year deltas, total change, and density are derived on the fly — no pre-processing, no service call.</p></div></div>
-            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">03</span><h3 class="principle__t">Classify</h3><p class="principle__d">The growth rate maps to a labelled, colour-coded trend so the headline reads itself.</p></div></div>
-            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">04</span><h3 class="principle__t">Render</h3><p class="principle__d">Inline HTML/CSS and embedded SVG icons draw the whole popup — nothing loaded from the network.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">02</span><h3 class="principle__t">Compute</h3><p class="principle__d">CAGR, year-over-year deltas, total change, and density are derived on the fly, no pre-processing, no service call.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">03</span><h3 class="principle__t">Classify</h3><p class="principle__d">The growth rate maps to a labelled, colour-coded trend, so the headline reads itself at a glance.</p></div></div>
+            <div class="principle" style="padding:18px 4px;"><div class="principle__grid"><span class="principle__n">04</span><h3 class="principle__t">Render</h3><p class="principle__d">Inline HTML/CSS and embedded SVG icons draw the whole popup, nothing loaded from the network.</p></div></div>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">Key technique</p>
       <h2 class="measure">The headline classifies itself.</h2>
-      <p class="lead soft measure" style="margin-bottom:22px;">A single block turns a computed growth rate into the label and colour you see at the top of the popup — the same logic driving the live demo above.</p>
+      <p class="lead soft measure" style="margin-bottom:22px;">A single block turns a computed growth rate into the label and colour you see at the top of the popup, the same logic driving the live demo above.</p>
       <div class="codeblock">
         <div class="codeblock__bar"><span class="d"></span>Arcade · trend classification</div>
         <pre><span class="com">// Dynamic trend classification from the 10-year CAGR</span>
@@ -162,8 +162,8 @@
     <div class="wrap split">
       <div>
         <p class="eyebrow eyebrow--orange">Deliverable 02 · Talent profile</p>
-        <h2>Who works here — by the hexagon.</h2>
-        <p class="lead soft">The second popup profiles the resident workforce for an H3 hex grid: twelve occupation groups, ranked by their share of local workers, with growth-since-2020, median wages, and a full breakdown table — each section collapsible so users drill in only as far as they need.</p>
+        <h2>Who works here, by the hexagon.</h2>
+        <p class="lead soft">The second popup profiles the resident workforce for an H3 hex grid: twelve occupation groups, ranked by their share of local workers, with growth-since-2020, median wages, and a full breakdown table, each section collapsible so users drill in only as far as they need.</p>
         <p class="soft">It also derives a plain-language headline (“Technology stronghold,” “Mixed workforce”) and a day-vs-night ratio that flags whether a hex is a job center, a bedroom community, or mixed use.</p>
         <div class="skills mt-s">
           <span class="skill">H3 hex grid</span>
@@ -192,7 +192,7 @@
       <p class="eyebrow eyebrow--orange">Outcome &amp; impact</p>
       <h2 class="measure">What changed.</h2>
       <div class="outcomes" style="margin-top:30px;">
-        <div class="oc"><h3><span class="mk"></span>Insight at the click</h3><p>Trends and workforce mix read instantly on the map — no export, no separate report.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Insight at the click</h3><p>Trends and workforce mix read instantly on the map, no export, no separate report.</p></div>
         <div class="oc"><h3><span class="mk"></span>Progressive disclosure</h3><p>Collapsible sections keep popups clean while letting analysts drill all the way to a full table.</p></div>
         <div class="oc"><h3><span class="mk"></span>Works anywhere, offline</h3><p>Zero external dependencies means it renders instantly on desktop or a field device, with no API calls.</p></div>
         <div class="oc"><h3><span class="mk"></span>Scales to thousands</h3><p>One Arcade expression applies to every feature in a layer without performance cost or maintenance overhead.</p></div>
@@ -206,7 +206,7 @@
       <p class="eyebrow eyebrow--orange">Skills demonstrated</p>
       <h2>What this shows.</h2>
       <div class="skills mt-s">
-        <span class="skill">Esri Arcade — data, analytics &amp; HTML generation</span>
+        <span class="skill">Esri Arcade, data, analytics &amp; HTML generation</span>
         <span class="skill">Data visualization from raw fields</span>
         <span class="skill">Defensive, null-safe programming</span>
         <span class="skill">Self-contained, zero-dependency delivery</span>
@@ -220,7 +220,7 @@
     <div class="ctaband__inner">
       <div class="gridfield"></div>
       <h2>Have map data nobody can read?</h2>
-      <p>I turn raw GIS fields into popups that explain themselves — charts, analytics, and plain-language headlines, right inside the map.</p>
+      <p>I turn raw GIS fields into popups that explain themselves, charts, analytics, and plain-language headlines, right inside the map.</p>
       <div class="ctaband__actions">
         <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
         <a href="work.html" class="btn btn--ghost" style="color:var(--screen-ink);border-color:var(--screen-line);">More work</a>

@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Network Center of Gravity Tool — Harraz Mohd Reza</title>
-<meta name="description" content="A custom ArcGIS Pro geoprocessing tool that finds the optimal central location for a workforce — runtime cut from over an hour to minutes.">
+<title>Network Center of Gravity Tool · Harraz Mohd Reza</title>
+<meta name="description" content="A custom ArcGIS Pro geoprocessing tool that finds the optimal central location for a workforce, runtime cut from over an hour to minutes.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://harrazmohdreza.com/case-study-cog-tool.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
-<meta property="og:title" content="Network Center of Gravity Tool — Harraz Mohd Reza">
+<meta property="og:title" content="Network Center of Gravity Tool · Harraz Mohd Reza">
 <meta property="og:description" content="A workforce-location optimizer; hour-long runs cut to minutes.">
 <meta property="og:url" content="https://harrazmohdreza.com/case-study-cog-tool.html">
 <meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
-<meta name="twitter:title" content="Network Center of Gravity Tool — Harraz Mohd Reza">
+<meta name="twitter:title" content="Network Center of Gravity Tool · Harraz Mohd Reza">
 <meta name="twitter:description" content="A workforce-location optimizer; hour-long runs cut to minutes.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
@@ -90,9 +90,9 @@
     <div class="wrap split">
       <div>
         <p class="eyebrow eyebrow--orange">The automation need</p>
-        <h2>A useful script that couldn’t keep up with the real question.</h2>
-        <p class="lead soft">A global commercial real estate team had a script that computed a single network center of gravity — the point minimizing average drive time from a set of employees. It worked, but the real need was broader and recurring.</p>
-        <p class="soft">They needed <em>one COG per group</em> — department, region, business unit — in a single run. It had to finish in minutes, produce reproducible and physically sensible results, and run for international colleagues on their own road networks. That’s the signature of a task worth automating properly.</p>
+        <h2>A useful script that could not keep up with the real question.</h2>
+        <p class="lead soft">A global commercial real estate team had a script that computed a single network center of gravity, the point minimizing average drive time from a set of employees. It worked, but the real need was broader and recurring.</p>
+        <p class="soft">They needed <em>one COG per group</em>, department, region, business unit, in a single run. It had to finish in minutes, produce reproducible and physically sensible results, and run for international colleagues on their own road networks. When a task shows up that often and carries that much weight, it is worth automating properly.</p>
       </div>
       <div>
         <ul class="marks">
@@ -109,7 +109,7 @@
   <section class="section">
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">The pivotal fix</p>
-      <h2 class="measure">A run that never finished — and the defect hiding behind it.</h2>
+      <h2 class="measure">A run that never finished, and the defect hiding behind it.</h2>
       <p class="lead soft measure" style="margin-bottom:26px;">A real analysis ran for over an hour without completing. The log told the story: the tool had generated <b>52,793,600</b> candidate locations for a requested 200. The generator was placing the requested count inside <em>every one</em> of the network’s 263,968 road segments.</p>
       <div class="beforeafter">
         <div class="ba ba--before">
@@ -124,7 +124,7 @@
           <div class="sub">candidates (e.g. 200)<br>~51,800 OD pairs<br>runtime: minutes</div>
         </div>
       </div>
-      <p class="soft measure" style="margin-top:24px;">The insight: candidates never needed to be pre-placed on roads at all — the OD solver snaps each one to the nearest network edge when it loads. Removing the entire road-extraction step and generating exactly <b>N</b> points inside a single boundary collapsed the matrix by five orders of magnitude, removed a vendor-data restriction, and simplified the tool. This fix was invisible to code review; it only appeared on a real run.</p>
+      <p class="soft measure" style="margin-top:24px;">The insight: candidates never needed to be pre-placed on roads at all, the OD solver snaps each one to the nearest network edge when it loads. Removing the entire road-extraction step and generating exactly <b>N</b> points inside a single boundary collapsed the matrix by five orders of magnitude, removed a vendor-data restriction, and simplified the tool. This fix was invisible to code review; it only appeared on a real run.</p>
     </div>
   </section>
 
@@ -133,16 +133,16 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">The iteration arc</p>
       <h2 class="measure">The sequence was the real lesson.</h2>
-      <p class="lead soft measure" style="margin-bottom:6px;">Most of the highest-impact changes came not from the initial review, but from running the tool on real data and reading the vendor’s primary documentation.</p>
+      <p class="lead soft measure" style="margin-bottom:6px;">Most of the highest-impact changes did not come from the initial review. They came from running the tool on real data and reading the vendor's primary documentation.</p>
       <div class="principles">
-        <div class="principle"><div class="principle__grid"><span class="principle__n">01</span><h3 class="principle__t">Per-group analysis</h3><p class="principle__d">Refactored a single-COG script into a reusable per-group engine with optional headcount weighting — one COG per department, region, or unit in a single run, at no extra solve cost.</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">01</span><h3 class="principle__t">Per-group analysis</h3><p class="principle__d">Refactored a single-COG script into a reusable per-group engine with optional headcount weighting, one COG per department, region, or unit in a single run, at no extra solve cost.</p></div></div>
         <div class="principle"><div class="principle__grid"><span class="principle__n">02</span><h3 class="principle__t">Explicit hierarchical routing</h3><p class="principle__d">Hierarchy was being inherited invisibly from the travel mode. Built an explicit travel-mode object with hierarchy forced on or off, and recorded the choice in the output.</p></div></div>
-        <div class="principle"><div class="principle__grid"><span class="principle__n">03</span><h3 class="principle__t">No silent truncation</h3><p class="principle__d">The OD docs confirmed a cutoff drops destinations with <em>no</em> “not reached” flag — a silent bias across origins. Set no cutoff and no destination limit so every origin reaches every candidate.</p></div></div>
-        <div class="principle"><div class="principle__grid"><span class="principle__n">04</span><h3 class="principle__t">The candidate explosion</h3><p class="principle__d">Diagnosed the 52.8-million-candidate defect and generated exactly N points instead — cutting runtime from over an hour to minutes. (Detailed above.)</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">03</span><h3 class="principle__t">No silent truncation</h3><p class="principle__d">The OD docs confirmed a cutoff drops destinations with <em>no</em> “not reached” flag, a silent bias across origins. Set no cutoff and no destination limit so every origin reaches every candidate.</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">04</span><h3 class="principle__t">The candidate explosion</h3><p class="principle__d">Diagnosed the 52.8-million-candidate defect and generated exactly N points instead, cutting runtime from over an hour to minutes. (Detailed above.)</p></div></div>
         <div class="principle"><div class="principle__grid"><span class="principle__n">05</span><h3 class="principle__t">The “#” crash</h3><p class="principle__d">ArcGIS passes a blank optional parameter as the literal string <code>#</code>. A normalization helper now treats <code>#</code> and <code>""</code> as “not provided” everywhere.</p></div></div>
-        <div class="principle"><div class="principle__grid"><span class="principle__n">06</span><h3 class="principle__t">Physically reachable output</h3><p class="principle__d">The COG is now reported at its network-snapped coordinates — it always lands on a routable road, never in water or a roadless gap, and matches where travel time was actually measured.</p></div></div>
-        <div class="principle"><div class="principle__grid"><span class="principle__n">07</span><h3 class="principle__t">Reproducible, unbiased sampling</h3><p class="principle__d">A fixed random seed made runs repeatable; candidates are drawn from the buffered convex hull of the employees — which excludes oceans and lakes and is provably where the optimum must lie.</p></div></div>
-        <div class="principle"><div class="principle__grid"><span class="principle__n">08</span><h3 class="principle__t">Robust to enterprise data</h3><p class="principle__d">A grouped run on joined, group-layer data crashed. The tool now copies in-boundary employees to a clean standalone feature class first — flattening joins and qualified names, and guaranteeing group ∩ boundary.</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">06</span><h3 class="principle__t">Physically reachable output</h3><p class="principle__d">The COG is now reported at its network-snapped coordinates, it always lands on a routable road, never in water or a roadless gap, and matches where travel time was actually measured.</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">07</span><h3 class="principle__t">Reproducible, unbiased sampling</h3><p class="principle__d">A fixed random seed made runs repeatable; candidates are drawn from the buffered convex hull of the employees, which excludes oceans and lakes and is provably where the optimum must lie.</p></div></div>
+        <div class="principle"><div class="principle__grid"><span class="principle__n">08</span><h3 class="principle__t">Robust to enterprise data</h3><p class="principle__d">A grouped run on joined, group-layer data crashed. The tool now copies in-boundary employees to a clean standalone feature class first, flattening joins and qualified names, and guaranteeing group ∩ boundary.</p></div></div>
       </div>
     </div>
   </section>
@@ -152,7 +152,7 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">Defensive coding</p>
       <h2 class="measure">Own the inputs, remove whole classes of bugs.</h2>
-      <p class="lead soft measure" style="margin-bottom:22px;">A recurring source of fragility was the shape of the input. Small, disciplined helpers — like normalizing ArcGIS’s blank-parameter placeholder — quietly eliminate entire categories of runtime failure.</p>
+      <p class="lead soft measure" style="margin-bottom:22px;">A recurring source of fragility was the shape of the input. Small, disciplined helpers, like normalizing ArcGIS’s blank-parameter placeholder, quietly eliminate entire categories of runtime failure.</p>
       <div class="codeblock">
         <div class="codeblock__bar"><span class="d"></span>Python · arcpy</div>
         <pre><span class="fn">def</span> clean_param(value, default=<span class="fn">None</span>):
@@ -174,11 +174,11 @@
       <p class="eyebrow eyebrow--orange">Final architecture</p>
       <h2 class="measure">How a run works now.</h2>
       <div class="steps" style="margin-top:26px;">
-        <div class="step"><div class="step__num">01</div><h3>Clean-copy origins</h3><p>Select employees in the boundary and copy them to a clean in-memory feature class — the robustness keystone that flattens joins and nesting.</p></div>
+        <div class="step"><div class="step__num">01</div><h3>Clean-copy origins</h3><p>Select employees in the boundary and copy them to a clean in-memory feature class, the robustness keystone that flattens joins and nesting.</p></div>
         <div class="step"><div class="step__num">02</div><h3>Build OD once</h3><p>Construct the OD Cost Matrix a single time with an explicit travel mode, local time zone, no cutoff, and no destination limit.</p></div>
         <div class="step"><div class="step__num">03</div><h3>Sample per group</h3><p>For each group, draw exactly N candidates inside the buffered convex hull of its origins, clipped to the boundary.</p></div>
         <div class="step"><div class="step__num">04</div><h3>Solve &amp; select</h3><p>Solve, compute the (optionally weighted) mean travel time per candidate with a fast array operation, and pick the minimum.</p></div>
-        <div class="step" style="grid-column:1/-1;"><div class="step__num">05</div><h3>Report the snapped winner</h3><p>Write one COG per group at its network-snapped, correctly-projected location, with full metadata — travel mode, hierarchy, origin count, candidates evaluated, and analysis date.</p></div>
+        <div class="step" style="grid-column:1/-1;"><div class="step__num">05</div><h3>Report the snapped winner</h3><p>Write one COG per group at its network-snapped, correctly-projected location, with full metadata, travel mode, hierarchy, origin count, candidates evaluated, and analysis date.</p></div>
       </div>
     </div>
   </section>
@@ -189,7 +189,7 @@
       <p class="eyebrow eyebrow--orange">Outcome &amp; impact</p>
       <h2 class="measure">What changed.</h2>
       <div class="outcomes" style="margin-top:30px;">
-        <div class="oc"><h3><span class="mk"></span>Hour → minutes</h3><p>A single-COG run on ~260 origins finishes in about six and a half minutes — most of it one-time network loading.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Hour → minutes</h3><p>A single-COG run on ~260 origins finishes in about six and a half minutes, most of it one-time network loading.</p></div>
         <div class="oc"><h3><span class="mk"></span>Group-aware in one run</h3><p>A real grouped run (179 origins, two groups) completed and wrote one COG per group automatically.</p></div>
         <div class="oc"><h3><span class="mk"></span>Zero credits, portable</h3><p>Consumes no ArcGIS Online credits on a local network and runs unchanged on international StreetMap Premium packs.</p></div>
         <div class="oc"><h3><span class="mk"></span>Trustworthy by design</h3><p>Results are reproducible, physically reachable, boundary-respecting, and robust to enterprise data structures.</p></div>
@@ -203,8 +203,8 @@
       <p class="eyebrow eyebrow--orange">Skills demonstrated</p>
       <h2>What this shows.</h2>
       <div class="skills mt-s">
-        <span class="skill">Python tool building — <code>arcpy</code> · NumPy</span>
-        <span class="skill">Network Analyst — OD Cost Matrix solver</span>
+        <span class="skill">Python tool building, <code>arcpy</code> · NumPy</span>
+        <span class="skill">Network Analyst, OD Cost Matrix solver</span>
         <span class="skill">Performance diagnosis &amp; algorithmic optimization</span>
         <span class="skill">Defensive coding for messy enterprise data</span>
         <span class="skill">Reading primary docs to prevent silent errors</span>
