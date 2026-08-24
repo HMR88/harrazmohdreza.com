@@ -1,4 +1,4 @@
-// Shared site behaviour — mobile nav toggle + footer year.
+// Shared site behavior, mobile nav toggle + footer year.
 (function () {
   var toggle = document.querySelector('.navtoggle');
   var nav = document.getElementById('nav');

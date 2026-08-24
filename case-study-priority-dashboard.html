@@ -58,7 +58,7 @@
   #classifier .tier[data-key="T3"]{--sw:var(--t3)}
   #classifier .tier[data-key="T4"]{--sw:var(--t4)}
   #classifier .date-readout{margin-top:14px}
-  /* Logic-flow leaf colours specific to the four tiers */
+  /* Logic-flow leaf colors specific to the four tiers */
   .leaf-t1{--leaf:#15803D;--leaf-bg:#F0FDF4}
   .leaf-t2{--leaf:#B45309;--leaf-bg:#FFFBEB}
   .leaf-t3{--leaf:#1D4ED8;--leaf-bg:#EFF6FF}
@@ -195,7 +195,7 @@
       <div>
         <p class="eyebrow eyebrow--orange">The problem</p>
         <h2>"Urgent" and "buildable" weren't the same thing.</h2>
-        <p class="lead soft">Managers needed to know which communities to work on this week. But the two facts that decide whether a community is actually buildable, whether its feeder infrastructure is confirmed and whether it is approved for funding, lived in two separate Excel trackers, disconnected from the master list of properties.</p>
+        <p class="lead soft">Managers needed to know which communities to work on this week. But the two facts that decide whether a community is actually buildable, whether its feeder infrastructure is confirmed and whether it is approved for funding, lived in two separate Excel trackers, disconnected from the primary list of properties.</p>
         <p class="soft">So prioritization happened by hand and by memory. A community with a construction date two weeks out looked critical, right up until someone discovered it was blocked and could not be built at all. Time got spent chasing sites that weren't ready, while genuinely actionable ones sat in the same undifferentiated list.</p>
       </div>
       <div>
@@ -214,9 +214,9 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--orange">The solution</p>
       <h2 class="measure">One model scores the whole pipeline, every morning.</h2>
-      <p class="lead soft measure" style="margin-bottom:30px;">A single Power BI data model joins the master property list to both readiness trackers, evaluates two gates, resolves the most trustworthy construction date, and assigns every community a tier and an urgency. From there it refreshes itself daily and emails each manager their own slice.</p>
+      <p class="lead soft measure" style="margin-bottom:30px;">A single Power BI data model joins the primary property list to both readiness trackers, evaluates two gates, resolves the most trustworthy construction date, and assigns every community a tier and an urgency. From there it refreshes itself daily and emails each manager their own slice.</p>
       <div class="steps">
-        <div class="step"><div class="step__num">01 · Connect</div><h3>Unify three systems</h3><p>Power Query merges the SharePoint master list with two Excel trackers, a dependency tracker and a finance tracker, on a shared property key.</p></div>
+        <div class="step"><div class="step__num">01 · Connect</div><h3>Unify three systems</h3><p>Power Query merges the SharePoint primary list with two Excel trackers, a dependency tracker and a finance tracker, on a shared property key.</p></div>
         <div class="step"><div class="step__num">02 · Gate</div><h3>Evaluate readiness</h3><p>Two gates are scored per community: is the feeder <em>dependency</em> confirmed, and is <em>finance</em> approved? These decide whether a site can actually be built.</p></div>
         <div class="step"><div class="step__num">03 · Resolve</div><h3>Pick the date that counts</h3><p>Four possible construction dates across two systems collapse into one <em>effective date</em>, using a fixed order of authority so the most committed date always wins.</p></div>
         <div class="step"><div class="step__num">04 · Classify</div><h3>Assign a tier</h3><p>Each community lands in one of four tiers by gate status, then gets sub-ranked by days until it starts, running from Overdue to Critical, High, Medium, and Low.</p></div>
@@ -238,7 +238,7 @@
         <div class="pipe-row"><span class="t">PSABBF Forecast</span><p class="d">The field team's best estimate before funding, used as the fallback when finance has not cleared.</p></div>
         <div class="pipe-row"><span class="t">PSABBF Actual</span><p class="d">The last resort, a recorded date with no financial commitment behind it yet.</p></div>
       </div>
-      <p class="soft measure" style="margin-top:22px;">A parallel <code>SWITCH</code> in DAX turns the resolved tier into its colour, background, and icon, so a single classification drives every visual cue on the page without a second rule to maintain.</p>
+      <p class="soft measure" style="margin-top:22px;">A parallel <code>SWITCH</code> in DAX turns the resolved tier into its color, background, and icon, so a single classification drives every visual cue on the page without a second rule to maintain.</p>
     </div>
   </section>
 
