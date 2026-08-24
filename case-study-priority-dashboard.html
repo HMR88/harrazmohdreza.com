@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Gate Priority Dashboard &middot; Harraz Mohd Reza</title>
+<meta name="description" content="A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers, refreshed daily.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://harrazmohdreza.com/case-study-priority-dashboard.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harraz Mohd Reza">
+<meta property="og:title" content="Multi-Gate Priority Dashboard &middot; Harraz Mohd Reza">
+<meta property="og:description" content="A Power BI dashboard that ranks an entire construction pipeline into four actionable tiers, automatically, every day.">
+<meta property="og:url" content="https://harrazmohdreza.com/case-study-priority-dashboard.html">
+<meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
+<meta name="twitter:title" content="Multi-Gate Priority Dashboard &middot; Harraz Mohd Reza">
+<meta name="twitter:description" content="A Power BI dashboard that ranks an entire construction pipeline into four actionable tiers, automatically, every day.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-48.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- ============================================================= -->
+<!-- SCOPED STYLES for this case study's signature console + tier   -->
+<!-- palette. These are the only rules that aren't already in       -->
+<!-- styles.css. Move them into styles.css if you want them global. -->
+<!-- ============================================================= -->
+<style>
+  /* Tier palette, used by the classifier console and logic leaves */
+  #classifier{
+    --t1:#15803D; --t1-bg:#F0FDF4;   /* Tier 1 · Full Priority  (green) */
+    --t2:#B45309; --t2-bg:#FFFBEB;   /* Tier 2 · Partial        (amber) */
+    --t3:#1D4ED8; --t3-bg:#EFF6FF;   /* Tier 3 · No Gates Met   (blue)  */
+    --t4:#6B7280; --t4-bg:#F3F4F6;   /* Tier 4 · Inactive       (gray)  */
+  }
+  #classifier .gate-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  #classifier .verdict-tier{
+    font-family:"Anton",sans-serif;letter-spacing:.02em;line-height:1;
+    font-size:1.5rem;margin:2px 0 2px;
+  }
+  #classifier .verdict-sub{font-family:"Space Mono",monospace;font-size:.82rem;opacity:.85}
+  #classifier .tier[data-key]{opacity:.4;transition:opacity .18s ease}
+  #classifier .tier.active{opacity:1}
+  #classifier .tier .swatch{
+    display:inline-block;width:12px;height:12px;border-radius:3px;
+    margin-right:8px;vertical-align:middle;background:var(--sw,#ccc)
+  }
+  #classifier .tier[data-key="T1"]{--sw:var(--t1)}
+  #classifier .tier[data-key="T2"]{--sw:var(--t2)}
+  #classifier .tier[data-key="T3"]{--sw:var(--t3)}
+  #classifier .tier[data-key="T4"]{--sw:var(--t4)}
+  #classifier .date-readout{margin-top:14px}
+  /* Logic-flow leaf colours specific to the four tiers */
+  .leaf-t1{--leaf:#15803D;--leaf-bg:#F0FDF4}
+  .leaf-t2{--leaf:#B45309;--leaf-bg:#FFFBEB}
+  .leaf-t3{--leaf:#1D4ED8;--leaf-bg:#EFF6FF}
+  .leaf-t4{--leaf:#6B7280;--leaf-bg:#F3F4F6}
+  .leaf-t1,.leaf-t2,.leaf-t3,.leaf-t4{
+    background:var(--leaf-bg);border-color:var(--leaf)
+  }
+  .leaf-t1 .nl,.leaf-t2 .nl,.leaf-t3 .nl,.leaf-t4 .nl{color:var(--leaf)}
+  /* Tier legend chips reused in the "gate model" panel */
+  .tierchip{display:inline-flex;align-items:center;gap:8px;font-family:"Space Mono",monospace;font-size:.8rem}
+  .tierchip .dot{width:10px;height:10px;border-radius:50%}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="notes.html">Notes</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav__cta">Let’s talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero gridfield study">
+    <div class="wrap">
+      <nav class="crumb"><a href="index.html">Home</a><span class="sep">/</span><a href="work.html">Work</a><span class="sep">/</span><span>Case 04</span><span class="sep">/</span><span class="coord">Priority Dashboard</span></nav>
+      <p class="hero__kicker"><span class="sq"></span>Case 04 · Power BI · Metrics reporting</p>
+      <h1>Multi-Gate <span class="o">Priority</span> Dashboard</h1>
+      <p class="deck">A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers. It refreshes daily and emails each manager their own report every week.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Data modeler &amp; report designer</dd></div>
+        <div><dt>Platform</dt><dd>Power BI · Power Query · Power Automate</dd></div>
+        <div><dt>Sources</dt><dd>SharePoint list + two Excel trackers</dd></div>
+        <div><dt>Type</dt><dd>Multi-page report + scheduled delivery</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- SIGNATURE CONSOLE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="console" id="classifier">
+        <div class="console__head">
+          <div class="console__title">Try the classifier</div>
+          <div class="console__sub">flip the gates → watch the tier it lands in</div>
+        </div>
+        <div class="console__grid">
+          <div class="panel">
+            <div class="panel__l">Incoming community</div>
+            <div class="inputs">
+              <div class="field">
+                <label for="statusSel">Status</label>
+                <select id="statusSel" class="csel">
+                  <option value="Active">Active (in pipeline)</option>
+                  <option value="In-Service">In-Service</option>
+                  <option value="Denied">Denied</option>
+                  <option value="Closed/Lost">Closed / Lost</option>
+                  <option value="Competition">Competition</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="depSel">Dependency gate</label>
+                <select id="depSel" class="csel">
+                  <option value="Met">Met · feeder build assigned</option>
+                  <option value="Not met">Not met · no feeder code</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="finSel">Finance gate</label>
+                <select id="finSel" class="csel">
+                  <option value="Approved">Approved (YES)</option>
+                  <option value="Pending">Pending · not yet in finance system</option>
+                  <option value="Not approved">Not approved (NO)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="daysSel">Construction start</label>
+                <select id="daysSel" class="csel">
+                  <option value="-12">12 days overdue</option>
+                  <option value="18" selected>Starts in 18 days</option>
+                  <option value="45">Starts in 45 days</option>
+                  <option value="75">Starts in 75 days</option>
+                  <option value="130">Starts in 130 days</option>
+                  <option value="none">No date on record</option>
+                </select>
+              </div>
+            </div>
+            <div class="code-readout date-readout" id="dateReadout" aria-live="polite"></div>
+          </div>
+          <div class="panel">
+            <div class="panel__l">Classification</div>
+            <div class="expr" id="exprLine"></div>
+            <div class="rail"><span class="pin">score</span><span class="line"></span><span class="pin" id="railVerdict">—</span></div>
+            <div class="outcome-line" id="outcomeLine"></div>
+          </div>
+          <div class="panel">
+            <div class="panel__l">The four tiers</div>
+            <div class="dests">
+              <div class="tier" data-key="T1"><span class="swatch"></span><div class="who">Tier 1 · Full Priority</div><div class="codes">Both gates met.<br>Act here first.</div></div>
+              <div class="tier" data-key="T2"><span class="swatch"></span><div class="who">Tier 2 · Partial</div><div class="codes">One gate met.<br>Resolve the other.</div></div>
+              <div class="tier" data-key="T3"><span class="swatch"></span><div class="who">Tier 3 · No Gates Met</div><div class="codes">Neither gate.<br>Monitor only.</div></div>
+              <div class="tier" data-key="T4"><span class="swatch"></span><div class="who">Tier 4 · Inactive</div><div class="codes">Out of pipeline.<br>Reference only.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="console__foot">The logic here mirrors the live model exactly. All counts, names, and codes shown across this page are representative samples.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK STATS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="stat__n">3</div><div class="stat__l">Source systems unified</div></div>
+        <div class="stat"><div class="stat__n">4</div><div class="stat__l">Priority tiers</div></div>
+        <div class="stat"><div class="stat__n">3,600<span class="o">+</span></div><div class="stat__l">Communities ranked daily</div></div>
+        <div class="stat"><div class="stat__n">0</div><div class="stat__l">Manual sorting steps</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow eyebrow--orange">The problem</p>
+        <h2>"Urgent" and "buildable" weren't the same thing.</h2>
+        <p class="lead soft">Managers needed to know which communities to work on this week. But the two facts that decide whether a community is actually buildable, whether its feeder infrastructure is confirmed and whether it is approved for funding, lived in two separate Excel trackers, disconnected from the master list of properties.</p>
+        <p class="soft">So prioritization happened by hand and by memory. A community with a construction date two weeks out looked critical, right up until someone discovered it was blocked and could not be built at all. Time got spent chasing sites that weren't ready, while genuinely actionable ones sat in the same undifferentiated list.</p>
+      </div>
+      <div>
+        <ul class="marks">
+          <li>Readiness signals were split across three systems that never talked to each other.</li>
+          <li>Near-term but blocked communities masqueraded as top priorities.</li>
+          <li>Sorting the pipeline was a manual, repeated spreadsheet chore.</li>
+          <li>Orphaned properties from a departed manager went unnoticed for weeks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">The solution</p>
+      <h2 class="measure">One model scores the whole pipeline, every morning.</h2>
+      <p class="lead soft measure" style="margin-bottom:30px;">A single Power BI data model joins the master property list to both readiness trackers, evaluates two gates, resolves the most trustworthy construction date, and assigns every community a tier and an urgency. From there it refreshes itself daily and emails each manager their own slice.</p>
+      <div class="steps">
+        <div class="step"><div class="step__num">01 · Connect</div><h3>Unify three systems</h3><p>Power Query merges the SharePoint master list with two Excel trackers, a dependency tracker and a finance tracker, on a shared property key.</p></div>
+        <div class="step"><div class="step__num">02 · Gate</div><h3>Evaluate readiness</h3><p>Two gates are scored per community: is the feeder <em>dependency</em> confirmed, and is <em>finance</em> approved? These decide whether a site can actually be built.</p></div>
+        <div class="step"><div class="step__num">03 · Resolve</div><h3>Pick the date that counts</h3><p>Four possible construction dates across two systems collapse into one <em>effective date</em>, using a fixed order of authority so the most committed date always wins.</p></div>
+        <div class="step"><div class="step__num">04 · Classify</div><h3>Assign a tier</h3><p>Each community lands in one of four tiers by gate status, then gets sub-ranked by days until it starts, running from Overdue to Critical, High, Medium, and Low.</p></div>
+        <div class="step" style="grid-column:1/-1;"><div class="step__num">05 · Deliver</div><h3>Report &amp; route it</h3><p>A three-page report gives leadership the whole pipeline; a Power Automate flow emails each manager their filtered PDF every Monday, so no one has to open a dashboard to know their week.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNIQUE -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Key technique</p>
+      <h2 class="measure">Resolving the date that counts.</h2>
+      <p class="lead soft measure" style="margin-bottom:30px;">The same community can carry up to four construction dates spread across two systems. Rather than trust whichever one a person happens to look at, the model resolves a single effective date through a fixed ladder of authority, where a committed and financed date always beats an unfunded estimate.</p>
+      <div class="pipeline">
+        <div class="pipe-code"><span class="fn">Effective&nbsp;Date</span> = <span class="fn">Coalesce</span>( CX&nbsp;Actual → CX&nbsp;Forecast → PSABBF&nbsp;Forecast → PSABBF&nbsp;Actual )</div>
+        <div class="pipe-row"><span class="t">CX Actual</span><p class="d">A real, financed start date already logged. The strongest signal, so it wins whenever it exists.</p></div>
+        <div class="pipe-row"><span class="t">CX Forecast</span><p class="d">A financed, committed estimate. Trusted next, because the funding is approved.</p></div>
+        <div class="pipe-row"><span class="t">PSABBF Forecast</span><p class="d">The field team's best estimate before funding, used as the fallback when finance has not cleared.</p></div>
+        <div class="pipe-row"><span class="t">PSABBF Actual</span><p class="d">The last resort, a recorded date with no financial commitment behind it yet.</p></div>
+      </div>
+      <p class="soft measure" style="margin-top:22px;">A parallel <code>SWITCH</code> in DAX turns the resolved tier into its colour, background, and icon, so a single classification drives every visual cue on the page without a second rule to maintain.</p>
+    </div>
+  </section>
+
+  <!-- LOGIC -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Logic</p>
+      <h2 class="measure">How a community finds its tier.</h2>
+      <div class="flow" style="margin-top:34px;">
+        <div class="node start"><span class="nt">Community record refreshed from source</span></div>
+        <div class="connector"></div>
+        <div class="node"><span class="nl">Decision</span><span class="nt">Is the status inactive? (In-Service · Denied · Closed/Lost · Competition)</span></div>
+        <div class="connector"></div>
+        <div class="branch">
+          <div class="branch-col">
+            <span class="branch-tag">Yes</span><div class="connector"></div>
+            <div class="node leaf leaf-t4"><span class="nl">Tier 4</span><span class="nt">Inactive · reference only</span></div>
+          </div>
+          <div class="branch-col">
+            <span class="branch-tag no">No</span><div class="connector"></div>
+            <div class="node"><span class="nl">Decision</span><span class="nt">Dependency met AND finance approved?</span></div>
+            <div class="connector"></div>
+            <div class="branch">
+              <div class="branch-col">
+                <span class="branch-tag">Yes</span><div class="connector"></div>
+                <div class="node leaf leaf-t1"><span class="nl">Tier 1</span><span class="nt">Full priority · sub-rank by days</span></div>
+              </div>
+              <div class="branch-col">
+                <span class="branch-tag no">No</span><div class="connector"></div>
+                <div class="node"><span class="nl">Decision</span><span class="nt">Dependency met OR finance approved?</span></div>
+                <div class="connector"></div>
+                <div class="branch">
+                  <div class="branch-col">
+                    <span class="branch-tag">Yes</span><div class="connector"></div>
+                    <div class="node leaf leaf-t2"><span class="nl">Tier 2</span><span class="nt">Partial · resolve the missing gate</span></div>
+                  </div>
+                  <div class="branch-col">
+                    <span class="branch-tag no">No</span><div class="connector"></div>
+                    <div class="node leaf leaf-t3"><span class="nl">Tier 3</span><span class="nt">No gates met · monitor only</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="soft measure" style="margin-top:30px;">The gates live entirely in the source data. When a feeder code is entered or finance flips to approved, the community re-tiers itself on the next morning's refresh, and no one touches the report.</p>
+    </div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow eyebrow--orange">Trust the numbers</p>
+        <h2>I checked the model against the raw data.</h2>
+        <p class="lead soft">A dashboard is only useful if people believe it. Before handing it to leadership, I cross-checked every headline figure against the source files independently, reconciling record counts, gate totals, and tier sizes system by system.</p>
+        <p class="soft">The cross-check paid for itself. It surfaced a table column that was hiding timeline urgency for one whole tier, and it flagged 100+ properties still tied to a manager who had left, orphaned work no one had noticed. Both were fixed before the first leadership review, not after.</p>
+      </div>
+      <div>
+        <ul class="marks">
+          <li>Record counts reconciled across all three systems, end to end.</li>
+          <li>Gate and tier totals matched the source within tolerance.</li>
+          <li>Caught a display bug masking urgency on blocked records.</li>
+          <li>Flagged 100+ orphaned properties for reassignment.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Outcome &amp; impact</p>
+      <h2 class="measure">What changed.</h2>
+      <div class="outcomes" style="margin-top:30px;">
+        <div class="oc"><h3><span class="mk"></span>One source of truth</h3><p>The whole pipeline is ranked in one place, so "what should I work on?" has a consistent answer instead of a per-person guess.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Blocked ≠ urgent</h3><p>Communities that can't be built no longer sit at the top of the list looking critical. Managers spend time only on what's actionable.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Self-updating</h3><p>Change a gate in the source and the tier re-computes on the next refresh. No manual re-sorting, no stale rankings.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Freshness you can see</h3><p>An on-report indicator flags when a morning data load failed, so no one acts on yesterday's numbers without knowing.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Delivered, not fetched</h3><p>Each manager gets their own filtered report in their inbox every Monday, with no login, no filtering, and no dashboard hunting.</p></div>
+        <div class="oc"><h3><span class="mk"></span>Data quality surfaced</h3><p>The build itself exposed orphaned properties and a hidden-urgency bug that manual review had missed for weeks.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS + EMAIL -->
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow eyebrow--orange">Skills demonstrated</p>
+        <h2>What this shows.</h2>
+        <div class="skills mt-s">
+          <span class="skill">Multi-source modeling: joining a SharePoint list to two daily-replaced Excel trackers</span>
+          <span class="skill">DAX: <code>SWITCH</code> tiering · <code>CALCULATE</code> KPI measures · coalesce date logic · freshness detection</span>
+          <span class="skill">Power Query: internal field-name mapping &amp; join-key debugging</span>
+          <span class="skill">Refresh scheduling around a daily file-replacement race condition</span>
+          <span class="skill">Independent data validation to verify a model before release</span>
+          <span class="skill">Power Automate: per-manager filtered PDF export &amp; email</span>
+          <span class="skill">Translating fuzzy business rules into a deterministic scoring model</span>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow eyebrow--orange">Weekly delivery</p>
+        <h2>The report it sends.</h2>
+        <div class="email mt-s">
+          <div class="email__bar"><span class="d"></span><span class="d"></span><span class="d"></span><span>Monday, 7:00 AM · automated</span></div>
+          <div class="email__body">
+            <div class="email__subj">Your Weekly Priority Report</div>
+            <div class="email__row"><span class="k">Manager</span><span class="v">{full name}</span></div>
+            <div class="email__row"><span class="k">Tier 1 · Full priority</span><span class="v">{count} communities</span></div>
+            <div class="email__row"><span class="k">Critical (0–30 days)</span><span class="v">{count} to engage now</span></div>
+            <div class="email__row"><span class="k">Attached</span><span class="v">Priority_Report_{code}.pdf</span></div>
+            <a class="email__link" href="#logic">→ Open the live dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wrap ctaband">
+    <div class="ctaband__inner">
+      <div class="gridfield"></div>
+      <h2>Have data scattered across systems?</h2>
+      <p>I turn disconnected trackers into one report people actually trust, with the logic, the refresh, and the delivery all handled. Tell me where your numbers live.</p>
+      <div class="ctaband__actions">
+        <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
+        <a href="work.html" class="btn btn--ghost" style="color:var(--screen-ink);border-color:var(--screen-line);">More work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <a href="index.html" class="wordmark" style="font-size:.82rem;"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+        <p class="soft" style="font-size:.9rem;margin-top:14px;max-width:34ch;">Connecting disparate data systems into one source of business-critical truth.</p>
+      </div>
+      <div><h4>Site</h4><ul><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
+    </div>
+    <div class="foot__base">
+      <span>All names, counts, codes, and URLs are fictional and for demonstration only.</span>
+      <span>© <span data-year>2026</span> Harraz Mohd Reza</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+<script>
+(function(){
+  var INACTIVE = ['In-Service','Denied','Closed/Lost','Competition'];
+  var TIER_META = {
+    T1:{label:'Tier 1 · Full Priority', color:'var(--t1)', bg:'var(--t1-bg)'},
+    T2:{label:'Tier 2 · Partial',       color:'var(--t2)', bg:'var(--t2-bg)'},
+    T3:{label:'Tier 3 · No Gates Met',  color:'var(--t3)', bg:'var(--t3-bg)'},
+    T4:{label:'Tier 4 · Inactive',      color:'var(--t4)', bg:'var(--t4-bg)'}
+  };
+  var statusSel = document.getElementById('statusSel');
+  var depSel    = document.getElementById('depSel');
+  var finSel    = document.getElementById('finSel');
+  var daysSel   = document.getElementById('daysSel');
+  var root      = document.getElementById('classifier');
+  var dateOut   = document.getElementById('dateReadout');
+  var exprLine  = document.getElementById('exprLine');
+  var outcome   = document.getElementById('outcomeLine');
+  var railVerd  = document.getElementById('railVerdict');
+  var tiers     = Array.prototype.slice.call(document.querySelectorAll('#classifier .tier'));
+
+  function subTier(days){
+    if(days === null) return {name:'No Date', note:'no construction date on record'};
+    if(days < 0)   return {name:'Overdue',  note:Math.abs(days)+' days overdue, verify immediately'};
+    if(days <= 30) return {name:'Critical', note:'starts in '+days+' days, engage now'};
+    if(days <= 60) return {name:'High',     note:'starts in '+days+' days, prepare and follow up'};
+    if(days <= 90) return {name:'Medium',   note:'starts in '+days+' days, monitor'};
+    return {name:'Low', note:'starts in '+days+' days, routine monitoring'};
+  }
+
+  function classify(status, dep, fin){
+    if(INACTIVE.indexOf(status) !== -1) return 'T4';
+    var depMet = dep === 'Met';
+    var finApproved = fin === 'Approved';
+    if(depMet && finApproved) return 'T1';
+    if(depMet || finApproved) return 'T2';
+    return 'T3';
+  }
+
+  function render(){
+    var status = statusSel.value,
+        dep = depSel.value,
+        fin = finSel.value,
+        daysRaw = daysSel.value,
+        days = daysRaw === 'none' ? null : parseInt(daysRaw, 10);
+
+    var tier = classify(status, dep, fin);
+    var meta = TIER_META[tier];
+    root.style.setProperty('--active', meta.color);
+
+    // Date-source readout
+    var dateLabel = (days === null) ? 'No Date'
+      : (days < 0 ? Math.abs(days)+' days overdue' : 'in '+days+' days');
+    dateOut.innerHTML =
+      '<span class="seg">DEP</span><span class="sep">·</span><span class="tail">'+dep+'</span>'+
+      '&nbsp;&nbsp;<span class="seg">FIN</span><span class="sep">·</span><span class="tail">'+fin+'</span>'+
+      '&nbsp;&nbsp;<span class="seg">START</span><span class="sep">·</span><span class="tail">'+dateLabel+'</span>';
+
+    // Gate expression
+    var depMet = dep === 'Met', finApproved = fin === 'Approved';
+    exprLine.innerHTML =
+      '<span class="fn">gate</span>(dep)<span class="arrow">→</span><span class="out">'+(depMet?'✓':'✗')+'</span>'+
+      '&nbsp;&nbsp;<span class="fn">gate</span>(fin)<span class="arrow">→</span><span class="out">'+(finApproved?'✓':'✗')+'</span>';
+
+    // Rail + outcome
+    railVerd.textContent = tier.replace('T','Tier ');
+    railVerd.style.color = meta.color;
+
+    var html = '';
+    if(tier === 'T4'){
+      html = '<span class="tag">out of pipeline</span>'+
+        '<span>Status <b>'+status+'</b> is inactive, shown for reference, never surfaced as actionable.</span>';
+    } else {
+      var st = subTier(days);
+      var gatesTxt = (tier==='T1') ? 'Both gates confirmed'
+                    : (tier==='T2') ? 'One gate confirmed, resolve the other'
+                    : 'Neither gate confirmed, monitor only';
+      if(tier === 'T3'){
+        html = '<span class="tag">monitor</span>'+
+          '<span class="verdict-tier" style="color:'+meta.color+'">'+meta.label+'</span>'+
+          '<span class="verdict-sub">'+gatesTxt+'. Not yet actionable.</span>';
+      } else {
+        html = '<span class="tag">rank</span>'+
+          '<span class="verdict-tier" style="color:'+meta.color+'">'+meta.label+'</span>'+
+          '<span class="verdict-sub">'+gatesTxt+' · <b>'+st.name+'</b> · '+st.note+'</span>';
+      }
+    }
+    outcome.innerHTML = html;
+
+    tiers.forEach(function(t){
+      t.classList.toggle('active', t.getAttribute('data-key') === tier);
+    });
+  }
+
+  [statusSel, depSel, finSel, daysSel].forEach(function(el){
+    el.addEventListener('change', render);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
