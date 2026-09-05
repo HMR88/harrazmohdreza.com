@@ -30,6 +30,7 @@ case-study-cog-tool.html            Case 03 — Network Center of Gravity tool
 styles.css                          THE shared design system (single source of truth)
 main.js                             Mobile nav toggle + footer year
 mindmap.js                          Home-page capability map — RADIAL layout (center hub, expandable phases, hover-traced connections; self-renders into #capmap; phone outline fallback)
+moonshot.html                       Unlisted campaign page for the X (moonshot factory) application
 notes.html                          Notes/field-log index
 note-directing-ai.html              Field note: directing AI (judgment & governance)
 note-cog-iterations.html            Field note: thirteen iterations (COG build)
@@ -133,6 +134,7 @@ Written to sound like Harraz, not AI-generated. Hard rules:
 - Harraz's natural idiom (from his own writing, use it): "rest assured", "head on", "tried and true", "one and done", rhetorical questions, longer connected sentences, plain verbs like leverage, incorporate, stress.
 - Locked phrases, never alter: "Location Intelligence is Business Intelligence." / "See the whole picture." / "Clarity from complexity."
 - Much of the capability-map (mindmap.js) text is Harraz's own writing from his review deck. Do not "improve" it; only fix real typos, and confirm with Harraz first.
+- **EXCEPTION: `moonshot.html`.** This is a deliberate, intentional exception to every voice rule above (campaign page written for the X, the Moonshot Factory application). Its copy is approved verbatim and must NOT be normalized, softened, or voice-passed in future edits, including its "not X, but Y" constructions and short punchy sentences. The page is `noindex`, absent from the nav and from `sitemap.xml`; keep it that way.
 
 ## Current status / open items
 - [x] GitHub, LinkedIn confirmed and applied; email fully private (form-only contact).

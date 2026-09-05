@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Cartographer · Harraz Mohd Reza</title>
+<meta name="description" content="A moonshot proposal. The moonshot is a hire. Harraz Mohd Reza, de-risked from both the technical and business perspectives.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://harrazmohdreza.com/moonshot.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harraz Mohd Reza">
+<meta property="og:title" content="Project Cartographer · Harraz Mohd Reza">
+<meta property="og:description" content="A moonshot proposal. The moonshot is a hire. Five risks, opened one at a time.">
+<meta property="og:url" content="https://harrazmohdreza.com/moonshot.html">
+<meta property="og:image" content="https://harrazmohdreza.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
+<meta name="twitter:title" content="Project Cartographer · Harraz Mohd Reza">
+<meta name="twitter:description" content="A moonshot proposal. The moonshot is a hire. Five risks, opened one at a time.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-48.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ==========================================================
+     PAGE-SCOPED: moonshot.html (Project Cartographer)
+     All rules prefixed .ms-* so nothing leaks into the site.
+     ========================================================== */
+  .ms-sec{scroll-margin-top:84px;}
+
+  /* --- hero support --- */
+  .ms-id{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 24px;}
+  .ms-id b{color:var(--ink-2);font-weight:700;}
+  .ms-sub{font-family:var(--font-head);font-weight:600;font-size:clamp(1.05rem,2vw,1.35rem);
+    line-height:1.22;letter-spacing:-.015em;color:var(--ink-2);max-width:26ch;margin:0 0 26px;}
+
+  /* --- trajectory plot --- */
+  .ms-plot{margin-left:auto;max-width:420px;width:100%;}
+  .ms-plot svg{display:block;width:100%;height:auto;background:var(--bone-raise);}
+  .ms-plot .frame{fill:none;stroke:var(--line-2);stroke-width:1;}
+  .ms-plot .axis{stroke:var(--line);stroke-width:1;}
+  .ms-plot .arc{fill:none;stroke:var(--orange);stroke-width:2.5;stroke-linecap:round;}
+  .ms-plot .node{fill:var(--bone-raise);stroke:var(--ink);stroke-width:2;}
+  .ms-plot .node.target{fill:var(--orange);stroke:var(--orange);}
+  .ms-plot .ping{fill:var(--orange);opacity:.35;}
+  .ms-plot text{font-family:var(--font-mono);font-size:10.5px;fill:var(--ink);}
+  .ms-plot text.soft{fill:var(--ink-2);}
+
+  /* --- console head + counter --- */
+  .ms-consolehead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+    flex-wrap:wrap;margin-bottom:30px;}
+  .ms-counter{text-align:right;line-height:1.1;}
+  .ms-counter .n{font-family:var(--font-head);font-weight:700;font-size:clamp(1.9rem,3.6vw,2.5rem);
+    letter-spacing:-.02em;line-height:1;color:var(--ink);}
+  .ms-counter .n b{color:var(--orange-deep);}
+  .ms-counter .l{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-3);margin-top:10px;}
+
+  /* --- risk ledger --- */
+  .ms-ledger{border-top:1px solid var(--ink);}
+  .ms-risk{border-bottom:1px solid var(--line);}
+  .ms-riskbtn{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;
+    padding:22px 4px;display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+    font-family:var(--font-body);color:var(--ink);transition:background .18s;}
+  .ms-riskbtn:hover{background:var(--bone-raise);}
+  .ms-riskbtn:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;}
+  .ms-rid{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.06em;color:var(--ink-3);}
+  .ms-risk.is-done .ms-rid{color:var(--orange-deep);}
+  .ms-rtitle{font-family:var(--font-head);font-weight:600;font-size:clamp(1.05rem,2.2vw,1.35rem);
+    line-height:1.18;letter-spacing:-.015em;}
+  .ms-tag{display:block;font-family:var(--font-mono);font-size:.66rem;font-weight:400;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-3);margin-bottom:8px;}
+  .ms-status{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:.7rem;
+    letter-spacing:.08em;white-space:nowrap;}
+  .ms-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;
+    border:1px solid var(--line-2);color:var(--ink-3);background:var(--bone);}
+  .ms-chip .mk{width:8px;height:8px;border:1px solid var(--ink-3);flex:none;}
+  .ms-risk.is-done .ms-chip{border-color:var(--orange);color:var(--orange-deep);}
+  .ms-risk.is-done .ms-chip .mk{background:var(--orange);border-color:var(--orange);}
+  .ms-arrow{font-family:var(--font-mono);font-size:1.05rem;color:var(--ink-3);}
+
+  .ms-riskbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s cubic-bezier(.3,.7,.2,1);}
+  .ms-risk.is-open .ms-riskbody{grid-template-rows:1fr;}
+  .ms-riskbody-inner{overflow:hidden;}
+  .ms-risk.is-open .ms-riskbody-inner{padding-bottom:26px;}
+  .ms-riskbody p{margin:0 0 16px;max-width:64ch;padding-left:82px;color:var(--ink-2);}
+  .ms-riskbody .ms-lead{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--orange-deep);margin-right:.6em;}
+  .ms-riskbody ul{list-style:none;margin:0;padding-left:82px;}
+  .ms-riskbody li{position:relative;padding-left:22px;margin-bottom:12px;max-width:62ch;
+    font-size:.98rem;color:var(--ink-2);line-height:1.6;}
+  .ms-riskbody li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--orange);}
+  .ms-riskbody li b{color:var(--ink);font-weight:700;}
+  @media(max-width:640px){.ms-riskbody p,.ms-riskbody ul{padding-left:0;}}
+
+  /* --- verdict --- */
+  .ms-verdict{margin-top:32px;background:var(--screen);color:var(--screen-ink);
+    padding:clamp(26px,4vw,36px);display:none;}
+  .ms-verdict.is-shown{display:block;}
+  .ms-verdict .k{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--orange);margin-bottom:14px;}
+  .ms-verdict p{margin:0;font-family:var(--font-head);font-weight:600;
+    font-size:clamp(1.1rem,2.3vw,1.5rem);line-height:1.35;max-width:52ch;color:var(--screen-faint);}
+  .ms-verdict p b{color:#fff;font-weight:600;}
+
+  /* --- leaps --- */
+  .ms-leaps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);margin-top:34px;}
+  @media(max-width:820px){.ms-leaps{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:460px){.ms-leaps{grid-template-columns:1fr;}}
+  .ms-leap{background:var(--bone-raise);padding:26px 22px 28px;}
+  .ms-fig{font-family:var(--font-head);font-weight:700;font-size:clamp(2rem,4.4vw,2.9rem);
+    letter-spacing:-.03em;line-height:.95;color:var(--ink);}
+  .ms-fig small{font-size:.52em;font-weight:700;color:var(--orange-deep);}
+  .ms-cap{margin:14px 0 0;font-size:.92rem;color:var(--ink-2);line-height:1.55;max-width:28ch;}
+  .ms-cap b{color:var(--ink);font-weight:600;}
+  .ms-leapsnote{margin-top:20px;font-family:var(--font-mono);font-size:.76rem;color:var(--ink-3);line-height:1.7;}
+  .ms-leapsnote b{color:var(--orange-deep);font-weight:700;}
+
+  /* --- compost --- */
+  .ms-compost{border-top:1px solid var(--ink);margin-top:34px;}
+  .ms-crow{display:grid;grid-template-columns:1fr 48px 1fr;gap:clamp(14px,3vw,32px);align-items:center;
+    padding:26px 4px;border-bottom:1px solid var(--line);transition:background .18s;}
+  .ms-crow:hover{background:var(--bone-raise);}
+  .ms-k{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);margin-bottom:8px;}
+  .ms-v{font-family:var(--font-head);font-weight:600;font-size:clamp(1.02rem,2vw,1.2rem);
+    letter-spacing:-.015em;line-height:1.22;color:var(--ink);}
+  .ms-cnode.is-theirs .ms-v{color:var(--orange-deep);}
+  .ms-why{font-size:.92rem;color:var(--ink-2);margin:8px 0 0;line-height:1.55;}
+  .ms-link{display:flex;align-items:center;justify-content:center;color:var(--line-2);}
+  .ms-link svg{width:100%;height:24px;}
+  .ms-tail{margin-top:26px;max-width:60ch;color:var(--ink-2);}
+  .ms-tail b{color:var(--ink);font-weight:700;}
+  @media(max-width:680px){
+    .ms-crow{grid-template-columns:1fr;gap:10px;}
+    .ms-link{display:none;}
+    .ms-cnode.is-theirs{padding-top:12px;border-top:1px dashed var(--line-2);}
+  }
+
+  /* --- close --- */
+  .ms-eyebrow--screen{position:relative;color:var(--orange);}
+  .ms-eyebrow--screen::before{background:var(--orange);}
+  .ms-creed{position:relative;font-family:var(--font-head);font-weight:700;
+    font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.025em;line-height:1.1;
+    color:#fff;max-width:24ch;margin:30px 0 4px;}
+  .ms-creed .hot{color:var(--orange);}
+
+  /* --- motion: honor the user's system preference ---
+     The resting state is the FINISHED state: the arc is drawn and the target
+     is placed. Animation only replays the arrival, so if motion is reduced or
+     animations are suppressed for any reason, the plot is still complete. --- */
+  .ms-plot .arc{stroke-dashoffset:0;}
+  @media (prefers-reduced-motion: no-preference){
+    .ms-plot .arc{stroke-dasharray:var(--len);
+      animation:ms-draw 1.9s .35s cubic-bezier(.2,.7,.2,1) both;}
+    .ms-plot .node.target{transform-box:fill-box;transform-origin:center;
+      animation:ms-pop .5s 2.05s both;}
+    .ms-plot .ping{transform-box:fill-box;transform-origin:center;
+      animation:ms-ping 2.6s 2.4s ease-out infinite;}
+    .ms-arrow{transition:transform .3s ease;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .ms-plot .ping{display:none;}
+    .ms-riskbody{transition:none;}
+    .ms-riskbtn,.ms-crow{transition:none;}
+    .ms-verdict.is-shown{animation:none;}
+  }
+  @keyframes ms-draw{from{stroke-dashoffset:var(--len);}to{stroke-dashoffset:0;}}
+  @keyframes ms-pop{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
+  @keyframes ms-ping{0%{transform:scale(1);opacity:.4;}70%{transform:scale(3.4);opacity:0;}100%{opacity:0;}}
+
+  @media(max-width:880px){
+    .ms-plot{margin:0;max-width:340px;}
+  }
+  @media(max-width:560px){
+    .ms-riskbtn{grid-template-columns:46px 1fr auto;gap:12px;}
+    .ms-status .ms-chip{padding:5px 8px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="notes.html">Notes</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav__cta">Let’s talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero gridfield">
+    <div class="wrap">
+      <nav class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span>Proposal &#8470;01</span><span class="sep">/</span><span class="coord">37.39N 122.08W</span></nav>
+      <div class="hero__grid">
+        <div>
+          <p class="ms-id">PROPOSAL &#8470;01 &nbsp;·&nbsp; SUBJECT: <b>Harraz Mohd Reza</b> &nbsp;·&nbsp; FOR: X, the moonshot factory</p>
+          <p class="hero__kicker"><span class="sq"></span>A moonshot proposal. The moonshot is a hire.</p>
+          <h1>Project<br>Cartographer</h1>
+          <p class="ms-sub">Most intractable problems are spatial before they are anything else. So am I.</p>
+          <p class="hero__deck">Your posting asks for ten years and a deep-tech launch. I have six years and a map. <b>Read this the way X reads a moonshot: not "does it already exist," but "is there a reason to believe."</b></p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#console">Try to kill this hire</a>
+            <a class="btn btn--ghost" href="#compost">See the compost</a>
+          </div>
+        </div>
+
+        <div class="hero__figure ms-plot">
+          <svg viewBox="0 0 300 300" role="img" aria-label="Trajectory plot: an arc running from Los Angeles in the south-east up to Mountain View in the north-west.">
+            <rect class="frame" x="10" y="10" width="280" height="280"/>
+            <line class="axis" x1="10" y1="150" x2="290" y2="150"/>
+            <line class="axis" x1="150" y1="10" x2="150" y2="290"/>
+            <!-- target: Mountain View, upper-left (north-west of LA) -->
+            <circle class="ping" cx="88" cy="92" r="9"/>
+            <circle class="node target" cx="88" cy="92" r="7.5"/>
+            <text x="88" y="70" text-anchor="middle">MOUNTAIN VIEW</text>
+            <text class="soft" x="88" y="56" text-anchor="middle">37.39N 122.08W · X HQ</text>
+            <!-- trajectory -->
+            <path class="arc" id="ms-arc" d="M216,220 C150,120 110,60 88,92"/>
+            <!-- origin: Los Angeles, lower-right (south-east) -->
+            <circle class="node" cx="216" cy="220" r="7"/>
+            <text x="216" y="244" text-anchor="middle">LOS ANGELES</text>
+            <text class="soft" x="216" y="258" text-anchor="middle">34.05N 118.24W</text>
+          </svg>
+          <div class="hero__figcap"><span>Trajectory</span><span>LA → Mountain View</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR A — THE DE-RISKING CONSOLE -->
+  <section class="section ms-sec" id="console">
+    <div class="wrap">
+      <div class="ms-consolehead">
+        <div>
+          <p class="eyebrow eyebrow--orange">Sector A · The monkey, not the pedestal</p>
+          <h2>What could kill this hire?</h2>
+          <p class="lead soft measure">The riskiest assumption goes first. That is the whole method. Open each one and decide for yourself whether it is still a risk.</p>
+        </div>
+        <div class="ms-counter" aria-live="polite">
+          <span class="n"><b id="ms-done">0</b>/5</span>
+          <span class="l">Risks de-risked</span>
+        </div>
+      </div>
+
+      <div class="ms-ledger">
+        <!-- R-01 -->
+        <div class="ms-risk" data-risk>
+          <button class="ms-riskbtn" aria-expanded="false" aria-controls="ms-body-1">
+            <span class="ms-rid">R-01</span>
+            <span class="ms-rtitle"><span class="ms-tag">Highest risk · The one you’re thinking about</span>Six years, not ten. Location intelligence, not classic deep tech.</span>
+            <span class="ms-status"><span class="ms-chip"><span class="mk"></span><span class="ms-st">OPEN</span></span><span class="ms-arrow">+</span></span>
+          </button>
+          <div class="ms-riskbody" id="ms-body-1"><div class="ms-riskbody-inner">
+            <p><span class="ms-lead">De-risk:</span>Tenure measures time. The role measures whether I can de-risk technology and business at once, and depth beats a decade of the same year repeated.</p>
+            <ul>
+              <li>Technician to Technical Program Manager in six years, promoted at nearly every stop, not by waiting my turn but by taking scope no one asked me to.</li>
+              <li>"Deep tech" at X is disproportionately <b>spatial</b>: grids, connectivity, climate. Location isn't my niche. It's the substrate those moonshots sit on.</li>
+              <li>The gap is the pitch. If X only wants people who already fit the pattern, it isn't casting a net for moonshots. It's hiring a resume.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <!-- R-02 -->
+        <div class="ms-risk" data-risk>
+          <button class="ms-riskbtn" aria-expanded="false" aria-controls="ms-body-2">
+            <span class="ms-rid">R-02</span>
+            <span class="ms-rtitle"><span class="ms-tag">Technical risk</span>Can he actually de-risk the hard technical part?</span>
+            <span class="ms-status"><span class="ms-chip"><span class="mk"></span><span class="ms-st">OPEN</span></span><span class="ms-arrow">+</span></span>
+          </button>
+          <div class="ms-riskbody" id="ms-body-2"><div class="ms-riskbody-inner">
+            <p><span class="ms-lead">De-risk:</span>The monkey-first instinct is already on the record.</p>
+            <ul>
+              <li>Found the defect generating <b>53 million</b> phantom candidate locations inside a network tool and cut its runtime from over an hour to minutes. That is a 60x leap, not a 10% tune-up.</li>
+              <li>Ran QA and acceptance on <b>500,000+</b> wildfire-prevention maps across 14 departments, where a silent wrong answer is a public-safety event, not a bug ticket.</li>
+              <li>Built the Python and SQL pipelines (Azure to Esri) and the governance behind them, designing against the quiet failures before they happen.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <!-- R-03 -->
+        <div class="ms-risk" data-risk>
+          <button class="ms-riskbtn" aria-expanded="false" aria-controls="ms-body-3">
+            <span class="ms-rid">R-03</span>
+            <span class="ms-rtitle"><span class="ms-tag">Commercial risk</span>Fine, but can he de-risk the business side too?</span>
+            <span class="ms-status"><span class="ms-chip"><span class="mk"></span><span class="ms-st">OPEN</span></span><span class="ms-arrow">+</span></span>
+          </button>
+          <div class="ms-riskbody" id="ms-body-3"><div class="ms-riskbody-inner">
+            <p><span class="ms-lead">De-risk:</span>This is the rare half. Most technical people can't do it. Most business people can't find the defect above. I have both on the same r&eacute;sum&eacute;.</p>
+            <ul>
+              <li>Grew one account <b>340%</b>, from $201K to $888K, by scoping the opportunity myself, and locked a 12-month renewal.</li>
+              <li>Owned a <b>$2.9M</b> portfolio across three concurrent engagements: scope, staffing, budget, delivery, QBRs, change-orders.</li>
+              <li>"It'd be great if you could de-risk from both the technical and business perspectives." That line in your posting is a description of my last two years.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <!-- R-04 -->
+        <div class="ms-risk" data-risk>
+          <button class="ms-riskbtn" aria-expanded="false" aria-controls="ms-body-4">
+            <span class="ms-rid">R-04</span>
+            <span class="ms-rtitle"><span class="ms-tag">Execution risk</span>Idea to launched thing, or just slideware?</span>
+            <span class="ms-status"><span class="ms-chip"><span class="mk"></span><span class="ms-st">OPEN</span></span><span class="ms-arrow">+</span></span>
+          </button>
+          <div class="ms-riskbody" id="ms-body-4"><div class="ms-riskbody-inner">
+            <p><span class="ms-lead">De-risk:</span>I carry things through adoption. Ideas are cheap. Enacted change is rare.</p>
+            <ul>
+              <li>Architected and launched a flagship enterprise application and web portal from inception, giving teams self-service maps instead of filing tickets and waiting.</li>
+              <li>Ship live tools people operate themselves: an event-driven router that killed a daily manual triage step with 100% record coverage, and a Power BI system that scores <b>3,600+</b> records a day and emails each manager their slice.</li>
+              <li>The thing you're reading is the proof. Most candidates send a PDF. I built you an instrument.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <!-- R-05 -->
+        <div class="ms-risk" data-risk>
+          <button class="ms-riskbtn" aria-expanded="false" aria-controls="ms-body-5">
+            <span class="ms-rid">R-05</span>
+            <span class="ms-rtitle"><span class="ms-tag">Temperament risk</span>Will he thrive in ambiguity, and does he even think in moonshots?</span>
+            <span class="ms-status"><span class="ms-chip"><span class="mk"></span><span class="ms-st">OPEN</span></span><span class="ms-arrow">+</span></span>
+          </button>
+          <div class="ms-riskbody" id="ms-body-5"><div class="ms-riskbody-inner">
+            <p><span class="ms-lead">De-risk:</span>Give me a mess and a decision that has to be made anyway.</p>
+            <ul>
+              <li>Turned coverage data from <b>90+</b> inconsistent providers into an analysis that informed <b>$51M</b> in state and federal broadband funding. Chaos in, public infrastructure out.</li>
+              <li>My working principles were earned on real data: build for the messy reality, verify against primary sources, prevent the silent wrong answers first.</li>
+              <li>I fall in love with problems, not solutions, which is why I'd rather be told I'm early than told I'm right.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="ms-verdict" id="ms-verdict" role="status">
+        <div class="k">Assessment complete</div>
+        <p>Every risk that would kill this hire is now on the table, and answered in your own hands. <b>The remaining question isn't whether I fit the posting. It's whether X is brave enough to talk to the candidate who doesn't.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR B — THE LEAPS -->
+  <section class="section ms-sec" id="leaps">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Sector B · The leaps</p>
+      <h2>Only the 10x made it onto this page.</h2>
+      <p class="lead soft measure">A normal r&eacute;sum&eacute; lists everything. This lists the moves that were multiples, not margins. Nothing here was a 10% improvement.</p>
+
+      <div class="ms-leaps">
+        <div class="ms-leap">
+          <div class="ms-fig">60<small>&times;</small></div>
+          <p class="ms-cap"><b>Runtime cut from over an hour to minutes.</b> By killing a defect that spawned 53M phantom locations, not by buying a faster machine.</p>
+        </div>
+        <div class="ms-leap">
+          <div class="ms-fig">340<small>%</small></div>
+          <p class="ms-cap"><b>Account growth, $201K to $888K.</b> Opportunity I scoped myself, plus a 12-month renewal.</p>
+        </div>
+        <div class="ms-leap">
+          <div class="ms-fig">73<small>%</small></div>
+          <p class="ms-cap"><b>Map-production time removed</b> with Python and ArcPy automation. Throughput that scaled a whole team.</p>
+        </div>
+        <div class="ms-leap">
+          <div class="ms-fig">$51<small>M</small></div>
+          <p class="ms-cap"><b>Public broadband funding informed</b> by my coverage analysis, built from 90+ messy provider sources.</p>
+        </div>
+      </div>
+      <p class="ms-leapsnote">Also on file but too small to headline: <b>500,000+</b> public-safety maps QA'd · <b>3</b> source systems fused into <b>1</b> governed truth · <b>390+</b> analyses shipped.</p>
+    </div>
+  </section>
+
+  <!-- SECTOR C — THE COMPOST -->
+  <section class="section ms-sec" id="compost">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--orange">Sector C · The compost I’d bring</p>
+      <h2>My last six years are fertile ground for yours.</h2>
+      <p class="lead soft measure">Balloons became lasers. Seaweed became Tidal. Here's where my finished work would decompose straight into X's live pipeline.</p>
+
+      <div class="ms-compost">
+        <div class="ms-crow">
+          <div class="ms-cnode is-mine">
+            <div class="ms-k">What I’ve already built</div>
+            <div class="ms-v">Broadband coverage at funding scale</div>
+            <p class="ms-why">Integrated 90+ providers; steered $51M in connectivity infrastructure.</p>
+          </div>
+          <div class="ms-link" aria-hidden="true"><svg viewBox="0 0 44 24"><path d="M2,12 H34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M30,6 L40,12 L30,18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></div>
+          <div class="ms-cnode is-theirs">
+            <div class="ms-k">Where it decomposes at X</div>
+            <div class="ms-v">Taara</div>
+            <p class="ms-why">Beaming connectivity to the unconnected. I've turned messy connectivity data into public decisions already.</p>
+          </div>
+        </div>
+
+        <div class="ms-crow">
+          <div class="ms-cnode is-mine">
+            <div class="ms-k">What I’ve already built</div>
+            <div class="ms-v">Utility-grid data governance</div>
+            <p class="ms-why">Corrosion, gas ops, 500K wildfire-prevention maps. Safety-critical spatial data.</p>
+          </div>
+          <div class="ms-link" aria-hidden="true"><svg viewBox="0 0 44 24"><path d="M2,12 H34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M30,6 L40,12 L30,18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></div>
+          <div class="ms-cnode is-theirs">
+            <div class="ms-k">Where it decomposes at X</div>
+            <div class="ms-v">Tapestry &amp; climate resilience</div>
+            <p class="ms-why">The electric grid as a moonshot. I've governed grid-safety data where wrong answers cost lives.</p>
+          </div>
+        </div>
+
+        <div class="ms-crow">
+          <div class="ms-cnode is-mine">
+            <div class="ms-k">What I’ve already built</div>
+            <div class="ms-v">Network center-of-gravity optimization</div>
+            <p class="ms-why">A custom tool that finds the optimal location for a workforce across a network.</p>
+          </div>
+          <div class="ms-link" aria-hidden="true"><svg viewBox="0 0 44 24"><path d="M2,12 H34" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M30,6 L40,12 L30,18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></div>
+          <div class="ms-cnode is-theirs">
+            <div class="ms-k">Where it decomposes at X</div>
+            <div class="ms-v">Mobility &amp; logistics problem spaces</div>
+            <p class="ms-why">Where should things be, across a network, under real constraints. That is the spatial core of half of X's early bets.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ms-tail"><b>The throughline:</b> I see the geographic thread connecting systems that were never built to talk to each other. That isn't a job description. It's a moonshot-generating engine, because so many intractable problems are spatial before they are anything else.</p>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="wrap ctaband ms-sec">
+    <div class="ctaband__inner">
+      <div class="gridfield"></div>
+      <p class="eyebrow ms-eyebrow--screen">Plot a course</p>
+      <h2>Casting a wide net means catching the ones still building the boat.</h2>
+      <p>If X is serious about innovators, the interesting candidate isn't the one who checks every box. It's the one who read the box, disagreed with it, and made you curious anyway.</p>
+      <p class="ms-creed">If I can believe it,<br>I can <span class="hot">build</span> it.</p>
+      <div class="ctaband__actions">
+        <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
+        <a href="https://www.linkedin.com/in/harraz-mohd-reza-303634b6/" class="btn btn--ghost" style="color:var(--screen-ink);border-color:var(--screen-line);">LinkedIn ↗</a>
+        <a href="https://github.com/HMR88" class="btn btn--ghost" style="color:var(--screen-ink);border-color:var(--screen-line);">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <a href="index.html" class="wordmark" style="font-size:.82rem;"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
+        <p class="soft" style="font-size:.9rem;margin-top:14px;max-width:34ch;">Connecting disparate data systems into one source of business-critical truth.</p>
+      </div>
+      <div><h4>Site</h4><ul><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="https://www.linkedin.com/in/harraz-mohd-reza-303634b6/">LinkedIn ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
+    </div>
+    <div class="foot__base">
+      <span>Project Cartographer · Trajectory: Los Angeles to Mountain View</span>
+      <span>© <span data-year>2026</span> Harraz Mohd Reza · Built to connect.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// Page-specific: the de-risking console.
+(function () {
+  // Measure the trajectory arc so the draw-on animation has a real length.
+  var arc = document.getElementById('ms-arc');
+  if (arc && arc.getTotalLength) {
+    arc.style.setProperty('--len', arc.getTotalLength());
+  }
+
+  var risks = document.querySelectorAll('[data-risk]');
+  var doneEl = document.getElementById('ms-done');
+  var verdict = document.getElementById('ms-verdict');
+  var total = risks.length;
+  var count = 0;
+
+  risks.forEach(function (risk) {
+    var btn = risk.querySelector('.ms-riskbtn');
+    var arrow = risk.querySelector('.ms-arrow');
+    var status = risk.querySelector('.ms-st');
+
+    btn.addEventListener('click', function () {
+      var isOpen = risk.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      arrow.textContent = isOpen ? '−' : '+';
+
+      if (isOpen && !risk.classList.contains('is-done')) {
+        risk.classList.add('is-done');
+        status.textContent = 'DE-RISKED';
+        count++;
+        doneEl.textContent = count;
+        if (count === total) { verdict.classList.add('is-shown'); }
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
