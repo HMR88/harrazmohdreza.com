@@ -1,153 +1,134 @@
-# CLAUDE.md — Project context for Harraz Mohd Reza's portfolio
+# CLAUDE.md: project context for Harraz Mohd Reza's portfolio
 
 This file orients Claude Code (or any developer) working on this site. Read it
 before making changes.
 
 ## What this is
-The personal portfolio of **Harraz Mohd Reza** — a GIS / data-systems technologist.
+The personal portfolio of **Harraz Mohd Reza**, a GIS and data-systems technologist.
 Positioning: *"Location Intelligence is Business Intelligence."* He connects the
 geographic, operational, and market data an organization already has into decisions
-they can act on. Voice: confident, precise, warm; not hypey.
+they can act on. Voice: confident, precise, warm, never hypey.
 
-Site goals: land work (employment + consulting), establish presence, grow toward
+Site goals: land work (employment and consulting), establish presence, grow toward
 his own business.
 
-## Tech stack — deliberately minimal
-- **Plain HTML + CSS + JavaScript. No build tools, no framework, no bundler.**
-- Only external dependency: Google Fonts (Anton, Hanken Grotesk, Space Mono).
-- Static hosting (GitHub Pages / Cloudflare Pages). See `DEPLOY.md`.
-- Keep it dependency-free unless there's a strong reason. Don't add npm/build steps.
+## How the site is built (read this first)
+Content lives in one place. The root `*.html` files are **generated**. Never edit them by hand.
 
-## File structure
 ```
-index.html                          Home
-about.html                          About + working principles
-work.html                           Case-study index
-contact.html                        Contact (methods + mailto form)
-case-study-routing-automation.html  Case 01 — Power Automate (live routing console)
-case-study-arcgis-popups.html       Case 02 — ArcGIS Arcade popups (live population demo)
-case-study-cog-tool.html            Case 03 — Network Center of Gravity tool
-styles.css                          THE shared design system (single source of truth)
-main.js                             Mobile nav toggle + footer year
-mindmap.js                          Home-page capability map — RADIAL layout (center hub, expandable phases, hover-traced connections; self-renders into #capmap; phone outline fallback)
-moonshot.html                       Unlisted campaign page for the X (moonshot factory) application
-notes.html                          Notes/field-log index
-note-directing-ai.html              Field note: directing AI (judgment & governance)
-note-cog-iterations.html            Field note: thirteen iterations (COG build)
-404.html, robots.txt, sitemap.xml   Infrastructure
-favicon.svg / favicon-*.png         Brand favicons
-og-image.png                        1200x630 social share card
-DEPLOY.md                           Publishing guide
-CLAUDE.md                           This file
+src/site.json        THE content model: person, nav, footer, phases, projects, notes,
+                     credentials, page copy, and per-page metadata (title, description,
+                     OG, robots, footnote). Project cards on Home and Work both read from here.
+src/pages/*.html     Unique page bodies (case studies, about, contact, notes, moonshot, 404).
+                     Home, Work, Notes, and How I work are generated entirely from site.json.
+tools/build.mjs      Plain Node, zero dependencies. Writes root *.html and sitemap.xml.
+tools/check-classes.mjs  Reports CSS classes used but unstyled (should be 0).
 ```
-Every page links `styles.css` and `main.js`. Change the look in **one** place: `styles.css`.
 
-> Note: any `*_standalone.html` files or `harraz-site.zip` are **generated artifacts**
-> for previewing/handoff — not the real site. The nine files above are the site.
-> Don't hand-edit standalones; regenerate them if needed.
+Workflow for any content or page change:
+1. Edit `src/site.json` or the fragment in `src/pages/`.
+2. Run `node tools/build.mjs`. It fails loudly on: a missing fragment, an unknown project
+   link or accent, an em dash in site.json, or an in-page `#anchor` with no matching id.
+3. If you changed `styles.css`, `main.js`, or `mindmap.js`, bump `site.assetVersion` in
+   site.json so browsers fetch the new file.
+4. Commit the source **and** the regenerated root files together.
 
-## Design system (the rules that matter)
-Tokens live in `:root` at the top of `styles.css`.
+Fragment `<style>` blocks are moved into the page head and `<script>` blocks are placed
+after the shared scripts. `mindmap.js` loads only on pages with `"mindmap": true`.
 
-- **Palette:** bone paper `#ECE6DA`, near-black ink `#17150F`, one vivid orange
-  accent `#F26A1B` (deep `#C24B08`). That's it. Green/red/blue appear **only inside
-  data visualizations** where they carry meaning — never as decoration.
-- **Type:**
-  - `--font-display` = **Anton** (heavy condensed). **Rationed on purpose.** Used only
-    for the big hero headline on each page. Do NOT spread it across section headings.
-  - `--font-head` = **Hanken Grotesk 600** for section headings and card titles
-    (medium weight, restrained — this restraint is a hard-won decision, keep it).
-  - `--font-body` = Hanken Grotesk for prose.
-  - `--font-mono` = **Space Mono** for labels, eyebrows, coordinates, breadcrumbs, code.
-- **Signature devices:** cartographic — faint coordinate grid (`.gridfield`),
-  registration marks (`.xmark`), the hero graticule globe, monospace locator
-  breadcrumbs (`.crumb`). Hard edges (no rounded corners) is intentional and technical.
-- **Editorial restraint > visual noise.** Whitespace and hierarchy carry the design.
-  If a change makes it louder or heavier, it's probably wrong.
+`_config.yml` keeps `src/`, `tools/`, and the docs out of the published site. Do not delete it.
+
+## Tech stack
+- Plain HTML, CSS, JavaScript on GitHub Pages. The build script is the only tooling and
+  needs nothing but Node. Do not add npm packages, bundlers, or frameworks.
+- External dependency: Google Fonts (Archivo, Azeret Mono).
+
+## Pages
+```
+index.html                 Home (hero, capability map, project cards, about, CTA)
+work.html                  Case-study index
+how-i-work.html            Full capability map on desktop, phase outline on phones
+about.html, contact.html   About, contact (Formspree form)
+notes.html + note-*.html   Field notes
+case-study-*.html          Four case studies (routing, popups, cog, priority)
+moonshot.html              Unlisted page for the X application (see voice exception)
+404.html, robots.txt, sitemap.xml, CNAME, favicons, og-image.png
+assets/contour.webp        Original contour texture behind every page (7% opacity)
+```
+
+## Design system
+Tokens live in `:root` at the top of `styles.css`. Structure from "Instrument panel",
+weight from "Survey sheet": rounded panels, pill nav, 2px ink rules, hard offset shadows,
+heavy expanded Archivo headlines, Azeret Mono readouts.
+
+- **Palette** (from the redesign deck): bg `#EAE6DA`, panel `#F4F1E8`, sink `#E2DDCF`,
+  ink `#222A2A`, aqua `#4FBBBC`, heat `#F39120`, rust `#EC4624`, iron panels `#222A2A`.
+- **Text on light backgrounds uses the text-safe accents** `--rust-text #A8361A` and
+  `--aqua-text #1E6E6F`. Raw rust and aqua are fills only; they fail contrast as text.
+  Every text/background pair passes WCAG AA. Re-check contrast if you add a pair.
+- Old token names (`--bone`, `--orange`, `--screen-*`, `--c-a`...) are aliased to the
+  new palette so inline styles in case-study fragments still resolve.
+- **Hit areas:** every standalone control is at least 44px tall. Inline links in prose are exempt.
+- Focus is a visible 2px+ outline everywhere. Keep it.
+- `prefers-reduced-motion` is respected. Keep it.
 
 ## Common tasks
+**Change copy on Home, Work, Notes, or How I work:** edit `src/site.json`, then build.
 
-**Change a color or font:** edit the token in `:root` in `styles.css`. It propagates everywhere.
+**Add a case study:** add an entry to `projects` and `pages` in site.json, write the body
+in `src/pages/case-study-<slug>.html` (copy an existing one), add an icon in `ICONS` in
+build.mjs if needed, then build. The card appears on Home and Work automatically.
+Add a matching proof node to `mindmap.js` if it belongs on the capability map.
 
-**Change the hero tagline/headline:** `index.html`, the `.hero` block near the top of `<main>`.
+**Add a note:** add to `notes` and `pages` in site.json, write `src/pages/note-<slug>.html`, build.
 
-**Add a new case study:**
-1. Copy an existing `case-study-*.html` as a template (routing = has an interactive
-   console; cog = static narrative with stats; popups = live data demo).
-2. Keep the shared header/nav, breadcrumb (`.crumb`), `.hero.study` (restrained title),
-   stats band (`.stats`), and footer.
-3. Add a matching card (`<a class="workcard">…`) to **both** `index.html` (Selected work)
-   and `work.html`. Bump the index number.
-
-**Reusable components in `styles.css`:** `.workcard`, `.stats/.stat`, `.steps/.step`,
-`.principles/.principle` (editorial numbered rows), `.outcomes/.oc`, `.codeblock`,
-`.meta`, `.marks`, `.skills/.skill`, `.crumb`, `.ctaband`, `.console` (routing),
-`.popup-demo` (arcgis). Prefer reusing these over inventing new patterns.
-
-## Contact details & email privacy (IMPORTANT)
-- GitHub: `https://github.com/HMR88` ✓
-- LinkedIn: `https://www.linkedin.com/in/harraz-mohd-reza-303634b6/` ✓
-- **Email: PRIVATE by design. It must NEVER appear anywhere in this repo** — not in HTML, JS, comments, or commit messages. It lives only in the Formspree dashboard.
-- The contact form POSTs to Formspree (`FORM_ENDPOINT` in contact.html's inline script), which forwards to Harraz's inbox. The endpoint ID is anonymous and reveals nothing.
-- Anti-spam layers: hidden `_gotcha` honeypot (client-side check + Formspree server-side drop), input length caps, and Formspree's own filtering.
-- **Status: LIVE.** Endpoint `https://formspree.io/f/xaqgrzqy` is wired into contact.html. The ID is anonymous (safe in a public repo); the destination email is configured only in the Formspree dashboard.
+## Contact details and email privacy (IMPORTANT)
+- GitHub: `https://github.com/HMR88`. LinkedIn: `https://www.linkedin.com/in/harraz-mohd-reza-303634b6/`.
+- **Email is PRIVATE. It must NEVER appear anywhere in this repo**: not in HTML, JS,
+  comments, or commit messages. It lives only in the Formspree dashboard.
+- The contact form posts to `https://formspree.io/f/xaqgrzqy`. Do not change it.
+  Anti-spam: `_gotcha` honeypot, length caps, Formspree filtering.
+- Resume is never downloadable. Available on request through the contact form.
 
 ## Content rules
-- **No employer names.** All case studies are genericized (e.g. "a global commercial
-  real estate firm"). Keep it that way.
+- **No employer names.** Case studies are genericized. Keep it that way.
 - Sample data is fictional and labeled as such in case-study footers. Keep those notes.
-- Child-simple truth in copy: describe real outcomes, don't inflate.
+- Describe real outcomes. Don't inflate.
 
-## Accessibility / performance (keep these)
-- `prefers-reduced-motion` is respected in `styles.css` — don't remove it.
-- Interactive demos (routing console, population popup) must keep working with keyboard
-  and have sensible fallbacks. Test after edits.
-- No heavy assets; keep the site fast and self-contained.
+## Security posture
+- Static site, no server, no database, no auth. Keep it that way.
+- CSP meta tag on every page (written by build.mjs `head()`). Contact's connect-src adds
+  formspree.io only. A new external resource needs a CSP change in build.mjs.
+- External links get `rel="noopener noreferrer"` from main.js.
+- GitHub Pages cannot send real headers. For HSTS or frame-ancestors, front with Cloudflare later.
 
+## Hidden content
+- **Credentials:** `credentials` in site.json has `"show": false`. Flip to `true` only when
+  Harraz has substantial credentials to report (not consumer certificates).
+- **moonshot.html:** `"unlisted": true`. noindex, absent from nav and sitemap. Keep it that way.
 
-## Security posture (keep these intact)
-- Static site = minimal attack surface: no server code, no database, no auth. Keep it that way.
-- **CSP meta tag** on every page restricts scripts/styles/fonts to self + Google Fonts. If adding a new external resource, extend the CSP or it will be blocked.
-- **Email privacy**: the address appears NOWHERE in this repo (see Contact details section). All contact flows through the Formspree form. Never add a mailto: link or write the address anywhere.
-- **Contact form**: POSTs privately to Formspree. Honeypot `_gotcha` (client + server side), length caps, inline status messaging. CSP connect-src on contact.html allows https://formspree.io only.
-- **External links** get `rel="noopener noreferrer"` automatically via `main.js`.
-- **HTTPS**: enforce in GitHub Pages settings (see DEPLOY.md). Note: GitHub Pages cannot send real HTTP response headers; meta-CSP is the practical maximum. For full headers (HSTS, X-Frame-Options / frame-ancestors), front the site with Cloudflare later.
-- `robots.txt`, `sitemap.xml`, branded `404.html` present. `index.html` carries JSON-LD Person schema + OG/Twitter cards on all pages.
-
-## Hidden sections
-- **Credentials roadmap** (About page) is wrapped in `<template id="credentials-hidden">` — inert, not rendered. To restore when certifications are earned: delete the `<template>` and `</template>` wrapper lines.
-
-## Analytics (to enable in Claude Code)
-Privacy-friendly, no cookies, no consent banner needed. Recommended: GoatCounter (free) or Plausible (paid).
-GoatCounter setup: (1) create account at goatcounter.com, pick a code e.g. `harrazmohdreza`;
-(2) before `</body>` on every page add:
-`<script data-goatcounter="https://harrazmohdreza.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>`
-(3) extend the CSP meta on every page: add `https://gc.zgo.at` to script-src and `https://harrazmohdreza.goatcounter.com` to connect-src.
-
-
-## Copy voice rules (IMPORTANT: all site text must follow these)
-Written to sound like Harraz, not AI-generated. Hard rules:
-- NO em dashes anywhere in visible text, titles, labels, or code comments. Use commas, periods, colons, or the mono separator "·".
-- No "not X, but Y" constructions. No punchy sentence fragments for drama. No clever aphorisms.
+## Copy voice rules (all site text)
+- NO em dashes anywhere: visible text, titles, labels, code comments. The build rejects
+  them in site.json. Use commas, periods, colons, or "·".
+- No "not X, but Y" constructions. No punchy fragments for drama. No clever aphorisms.
 - Light contractions (it's, I'll); keep "I am" for weightier statements.
-- Direct and confident. The site sells Harraz's services; hedging undersells.
-- Harraz's natural idiom (from his own writing, use it): "rest assured", "head on", "tried and true", "one and done", rhetorical questions, longer connected sentences, plain verbs like leverage, incorporate, stress.
-- Locked phrases, never alter: "Location Intelligence is Business Intelligence." / "See the whole picture." / "Clarity from complexity."
-- Much of the capability-map (mindmap.js) text is Harraz's own writing from his review deck. Do not "improve" it; only fix real typos, and confirm with Harraz first.
-- **EXCEPTION: `moonshot.html`.** This is a deliberate, intentional exception to every voice rule above (campaign page written for the X, the Moonshot Factory application). Its copy is approved verbatim and must NOT be normalized, softened, or voice-passed in future edits, including its "not X, but Y" constructions and short punchy sentences. The page is `noindex`, absent from the nav and from `sitemap.xml`; keep it that way.
+- Direct and confident. Hedging undersells.
+- Harraz's idiom: "rest assured", "head on", "tried and true", "one and done",
+  rhetorical questions, longer connected sentences, plain verbs.
+- Locked phrases, never alter: "Location Intelligence is Business Intelligence." /
+  "See the whole picture." / "Clarity from complexity."
+- Most capability-map text in mindmap.js is Harraz's own writing. Only fix real typos,
+  and confirm with him first. Exception: the `p_priority` node copy was drafted during
+  the redesign and is awaiting his review.
+- **EXCEPTION: `moonshot.html`.** Its copy is approved verbatim and is exempt from every
+  rule above. Do not normalize or voice-pass it.
 
-## Current status / open items
-- [x] GitHub, LinkedIn confirmed and applied; email fully private (form-only contact).
-- [x] Contact form activated (Formspree endpoint wired in).
-- [ ] Restore the credentials section (About) once first certification lands.
-- [ ] Enable analytics (see Analytics section above).
-- [ ] Review/approve the drafted field note (`note-cog-iterations.html`) — written in Harraz's voice from real project material; edit freely.
-- [x] Favicons (favicon.svg + PNG fallbacks), OG share image (og-image.png, linked on all pages).
-- [x] Notes section live (`notes.html` + first note); nav updated on all pages.
-- [x] ALIC traits section on About (Adaptability · Learning · Ideation · Change).
-- [x] Resume policy: never downloadable — available on request via contact (card on contact.html).
-- [ ] Final tagline is set to "I bring clarity to the complexity." — open to riffing.
-- [ ] Publish to harrazmohdreza.com (see `DEPLOY.md`).
-- [x] Interactive capability map embedded on the home page (`mindmap.js`, `#capmap`); edit nodes/links in the data objects at the top of `mindmap.js`.
-- [ ] Possible future: graticule/contour background texture applied more widely;
-      more case studies; a real form backend (Formspree/Netlify Forms) instead of mailto.
+## Analytics (not enabled)
+Privacy-friendly option: GoatCounter. Add its script tag and CSP entries in build.mjs
+`head()` (script-src `https://gc.zgo.at`, connect-src `https://harrazmohdreza.goatcounter.com`).
+
+## Open items
+- [ ] Review the drafted `p_priority` capability-map copy in mindmap.js.
+- [ ] Restore credentials once there is something substantial to show.
+- [ ] Enable analytics.
+- [ ] Review the drafted field note (`note-cog-iterations`).

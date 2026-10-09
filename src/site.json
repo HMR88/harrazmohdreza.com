@@ -1,0 +1,410 @@
+{
+  "site": {
+    "origin": "https://harrazmohdreza.com",
+    "ogImage": "https://harrazmohdreza.com/og-image.png",
+    "assetVersion": "7"
+  },
+  "person": {
+    "name": "Harraz Mohd Reza",
+    "roles": "Technologist / Futurist / Data Purist",
+    "github": "https://github.com/HMR88",
+    "linkedin": "https://www.linkedin.com/in/harraz-mohd-reza-303634b6/",
+    "jsonld": {
+      "jobTitle": "Location Business Intelligence Technologist",
+      "description": "GIS, automation, and custom tooling that turn location into business decisions.",
+      "knowsAbout": [
+        "GIS",
+        "Location Intelligence",
+        "Business Intelligence",
+        "Workflow Automation",
+        "Python",
+        "ArcGIS",
+        "Data Integration"
+      ]
+    }
+  },
+  "nav": [
+    {
+      "label": "Work",
+      "href": "work.html",
+      "section": "work"
+    },
+    {
+      "label": "About",
+      "href": "about.html",
+      "section": "about"
+    },
+    {
+      "label": "Notes",
+      "href": "notes.html",
+      "section": "notes"
+    },
+    {
+      "label": "Contact",
+      "href": "contact.html",
+      "section": "contact"
+    }
+  ],
+  "cta": {
+    "label": "Let’s talk",
+    "href": "contact.html"
+  },
+  "footer": {
+    "line": "Connecting disparate data systems into one source of business-critical truth.",
+    "domain": "harrazmohdreza.com",
+    "signoff": "Built to connect."
+  },
+  "phases": [
+    {
+      "id": "discover",
+      "name": "Discover",
+      "text": "Frame the real problem by understanding the business need and the data behind it."
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "text": "Architect the solution and the analysis before building."
+    },
+    {
+      "id": "build",
+      "name": "Build",
+      "text": "Create the pipelines, models, tools, and visuals that drive business revenue and value."
+    },
+    {
+      "id": "operate",
+      "name": "Operate",
+      "text": "Deliver value, measure it, and drive decisions."
+    }
+  ],
+  "projects": [
+    {
+      "id": "routing",
+      "title": "Conditional Notification & Routing Automation",
+      "short": "Routing automation",
+      "href": "case-study-routing-automation.html",
+      "accent": "aqua",
+      "tools": [
+        "Power Automate",
+        "SharePoint",
+        "Expressions"
+      ],
+      "summary": "An event-driven flow that filters new records and routes each notification to the right reviewer, with a fallback so nothing gets dropped. It includes a live router you can operate yourself.",
+      "stats": [
+        {
+          "value": "0",
+          "label": "manual triage steps"
+        },
+        {
+          "value": "<1s",
+          "label": "to route a record"
+        }
+      ]
+    },
+    {
+      "id": "popups",
+      "title": "Interactive ArcGIS Map Popups",
+      "short": "ArcGIS map popups",
+      "href": "case-study-arcgis-popups.html",
+      "accent": "heat",
+      "tools": [
+        "ArcGIS Arcade",
+        "H3 hexes",
+        "SVG"
+      ],
+      "summary": "Data-driven popups with embedded charts, growth analytics, and talent profiles, all rendered inside the map with zero external dependencies.",
+      "stats": [
+        {
+          "value": "11",
+          "label": "years of data per click"
+        },
+        {
+          "value": "0",
+          "label": "external dependencies"
+        }
+      ]
+    },
+    {
+      "id": "cog",
+      "title": "Network Center of Gravity Tool",
+      "short": "Center of Gravity tool",
+      "href": "case-study-cog-tool.html",
+      "accent": "rust",
+      "tools": [
+        "ArcGIS Pro",
+        "Python",
+        "arcpy",
+        "Network Analyst"
+      ],
+      "summary": "A custom geoprocessing tool that finds the best central location for a workforce. I cut the runtime from over an hour to a few minutes by finding and removing a defect that generated 53 million candidate locations.",
+      "stats": [
+        {
+          "value": "1hr → min",
+          "label": "runtime per analysis"
+        },
+        {
+          "value": "13.7B → 51.8K",
+          "label": "OD matrix pairs"
+        }
+      ]
+    },
+    {
+      "id": "priority",
+      "title": "Multi-Gate Priority Dashboard",
+      "short": "Priority dashboard",
+      "href": "case-study-priority-dashboard.html",
+      "accent": "ink",
+      "tools": [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Power Automate"
+      ],
+      "summary": "A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers, refreshed daily and emailed to each manager every week.",
+      "stats": [
+        {
+          "value": "3,600+",
+          "label": "communities ranked daily"
+        },
+        {
+          "value": "3",
+          "label": "source systems unified"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "title": "Directing AI, not just prompting it",
+      "href": "note-directing-ai.html",
+      "topics": "AI in practice, judgment and governance",
+      "summary": "Everyone can get an answer out of an AI now, so the answer was never the value. My rules for when to lean on it, when a human stays in the loop, and how I keep accountability for every number that reaches a decision."
+    },
+    {
+      "title": "Thirteen iterations: what a 53-million-candidate bug taught me",
+      "href": "note-cog-iterations.html",
+      "topics": "Python and arcpy, AI-assisted engineering",
+      "summary": "The most expensive defect in my Center of Gravity tool was invisible in code review, it only appeared when the tool met real data. Notes on iterative execution, primary sources, and directing AI as an engineering partner."
+    }
+  ],
+  "credentials": {
+    "show": false,
+    "reason": "Hidden until Harraz has substantial, non-consumer credentials to report.",
+    "items": [
+      {
+        "name": "Professional development, MasterClass",
+        "meta": "Continued learning: leadership, communication and strategy",
+        "status": "In progress, 2026"
+      },
+      {
+        "name": "Esri ArcGIS Pro, Technical Certification",
+        "meta": "Industry certification: geospatial platform",
+        "status": "Planned"
+      },
+      {
+        "name": "Microsoft, Power Platform / Azure Data Fundamentals",
+        "meta": "Industry certification: automation and data",
+        "status": "Planned"
+      }
+    ]
+  },
+  "home": {
+    "lead": "Location Intelligence",
+    "rest": "is Business Intelligence.",
+    "tagline": "See the whole picture.",
+    "support": "Clarity from complexity. I take the geographic, operational, and market data you already have and connect it into something you can actually use to make decisions.",
+    "primary": {
+      "label": "See the work",
+      "href": "work.html"
+    },
+    "secondary": {
+      "label": "About me",
+      "href": "about.html"
+    },
+    "phasesTitle": "How I deliver",
+    "phasesIntro": "Every project I take on runs through four phases. Hover any capability on the map to see what it connects to across the others.",
+    "phasesPhoneIntro": "Every project I take on runs through four phases.",
+    "mapLink": "Open the full capability map",
+    "workTitle": "Four projects that show how I work.",
+    "workLink": "All work",
+    "aboutTitle": "I help organizations get more from the systems they already have.",
+    "aboutBody": "I build the bridges between the systems organizations already own. Most teams already have the data they need. The problem is that it lives in systems that were never built to talk to each other, and my job is to fix that. Almost everything a business tracks has a geographic component, whether that's a location, a region, or a route. I build upon those connections to help businesses better understand the wealth of information they have access to and help them make better sense of it all. That means less time trying to figure out what all the data means, and more time understanding the business value that it can hold.",
+    "aboutLink": "More about me",
+    "ctaTitle": "Have systems that don’t talk to each other?",
+    "ctaBody": "This is the kind of problem I like best. Tell me where the manual handoffs and disconnected datasets are, and I'll show you what one connected system can do for your team.",
+    "ctaButton": "Start a conversation"
+  },
+  "workPage": {
+    "kicker": "Selected case studies",
+    "title": "Connecting the disconnected.",
+    "intro": "Each project below started the same way: data and systems that described the same reality but never met. Here’s how I bridged them.",
+    "outro": "More case studies in progress, this portfolio is actively growing.",
+    "ctaTitle": "Want this kind of work on your data?",
+    "ctaBody": "Tell me where your systems are disconnected. I’ll show you what one cohesive system could surface.",
+    "ctaButton": "Start a conversation"
+  },
+  "notesPage": {
+    "kicker": "Field log",
+    "title": "Lessons from the field.",
+    "intro": "Short, practical notes from real builds, what broke, what fixed it, and what I'd tell you before you hit the same wall. Updated as the work teaches me.",
+    "outro": "More notes in progress, this log grows as the work does.",
+    "ctaTitle": "Working through something similar?",
+    "ctaBody": "If one of these notes maps onto a problem you're wrestling with, I'd genuinely like to hear about it.",
+    "ctaButton": "Start a conversation"
+  },
+  "howPage": {
+    "kicker": "Capability map",
+    "title": "How I work.",
+    "intro": "Every project runs through four phases: Discover, Design, Build, and Operate. Click a phase to expand it, then hover any capability to trace what it connects to across the others. Each case study is pinned to the capabilities it proves.",
+    "phoneIntro": "Every project runs through four phases. Open a phase to see the capabilities inside it and what I deliver for a business."
+  },
+  "pages": [
+    {
+      "slug": "index",
+      "template": "home",
+      "section": "home",
+      "sitemap": 1.0,
+      "title": "Harraz Mohd Reza · Technologist / Futurist / Data Purist",
+      "description": "Geospatial analytics, workflow automation, and custom tooling that bridge disconnected data into one source of business-critical truth.",
+      "ogTitle": "Harraz Mohd Reza · Location Business Intelligence",
+      "ogDescription": "Location Intelligence is Business Intelligence. GIS, automation, and custom tooling that turn location into decisions.",
+      "canonical": "https://harrazmohdreza.com/",
+      "jsonld": true,
+      "mindmap": true
+    },
+    {
+      "slug": "work",
+      "template": "work",
+      "section": "work",
+      "sitemap": 0.9,
+      "title": "Work · Harraz Mohd Reza",
+      "description": "Case studies in geospatial analytics, workflow automation, and custom tooling.",
+      "ogDescription": "Case studies in geospatial analytics, workflow automation, and custom tooling."
+    },
+    {
+      "slug": "how-i-work",
+      "template": "how",
+      "section": "work",
+      "sitemap": 0.7,
+      "title": "How I work · Harraz Mohd Reza",
+      "description": "An interactive map of how I deliver: four phases, the capabilities inside each, and the case studies that prove them.",
+      "ogDescription": "Four phases, the capabilities inside each, and the case studies that prove them.",
+      "mindmap": true
+    },
+    {
+      "slug": "about",
+      "template": "fragment",
+      "section": "about",
+      "sitemap": 0.8,
+      "title": "About · Harraz Mohd Reza",
+      "description": "A technologist, futurist, and data purist who connects disparate systems into one cohesive source of truth.",
+      "ogTitle": "About · Harraz Mohd Reza",
+      "ogDescription": "Technologist, futurist, data purist. Trained in the empirical sciences; connecting systems through location."
+    },
+    {
+      "slug": "contact",
+      "template": "fragment",
+      "section": "contact",
+      "sitemap": 0.8,
+      "formspree": true,
+      "title": "Contact · Harraz Mohd Reza",
+      "description": "Get in touch about geospatial analytics, automation, and connecting your data systems.",
+      "ogTitle": "Contact · Harraz Mohd Reza",
+      "ogDescription": "Get in touch about geospatial analytics, automation, and connecting your data systems."
+    },
+    {
+      "slug": "notes",
+      "template": "notes",
+      "section": "notes",
+      "sitemap": 0.8,
+      "title": "Notes · Harraz Mohd Reza",
+      "description": "Field notes on GIS, automation, data systems, and working with AI, short, practical lessons from real builds.",
+      "ogDescription": "Field notes on GIS, automation, data systems, and working with AI."
+    },
+    {
+      "slug": "note-directing-ai",
+      "template": "fragment",
+      "section": "notes",
+      "sitemap": 0.6,
+      "ogType": "article",
+      "title": "Directing AI, not just prompting it · Harraz Mohd Reza",
+      "description": "Why the value in working with AI is judgment, not output speed. My rules for when to lean on it, when not to, and how I keep a human accountable for every number.",
+      "ogTitle": "Directing AI, not just prompting it",
+      "ogDescription": "Why the value in working with AI is judgment, not output speed. My rules for when to lean on it, when not to, and how I keep a human accountable for every number."
+    },
+    {
+      "slug": "note-cog-iterations",
+      "template": "fragment",
+      "section": "notes",
+      "sitemap": 0.6,
+      "ogType": "article",
+      "title": "Thirteen iterations · Harraz Mohd Reza",
+      "description": "What a 53-million-candidate bug taught me about iterative execution, primary sources, and directing AI as an engineering partner.",
+      "ogTitle": "Thirteen iterations: what a 53-million-candidate bug taught me",
+      "ogDescription": "Notes on iterative execution, primary sources, and directing AI as an engineering partner."
+    },
+    {
+      "slug": "case-study-routing-automation",
+      "template": "fragment",
+      "section": "work",
+      "sitemap": 0.7,
+      "title": "Conditional Notification & Routing Automation · Harraz Mohd Reza",
+      "description": "A Power Automate cloud flow that filters new records and routes notifications to the right reviewer, with a fallback safety net.",
+      "ogTitle": "Conditional Routing Automation · Harraz Mohd Reza",
+      "ogDescription": "A Power Automate flow that routes every record to the right reviewer, automatically.",
+      "footnote": "All names, emails, codes, and URLs are fictional and for demonstration only."
+    },
+    {
+      "slug": "case-study-arcgis-popups",
+      "template": "fragment",
+      "section": "work",
+      "sitemap": 0.7,
+      "title": "Interactive ArcGIS Map Popups · Harraz Mohd Reza",
+      "description": "Data-driven ArcGIS Arcade popups with embedded charts, growth analytics, and workforce talent profiles, zero external dependencies.",
+      "ogTitle": "Interactive ArcGIS Map Popups · Harraz Mohd Reza",
+      "ogDescription": "Map popups with embedded charts and analytics, zero external dependencies.",
+      "footnote": "All figures and locations shown are fictional sample data, for demonstration only."
+    },
+    {
+      "slug": "case-study-cog-tool",
+      "template": "fragment",
+      "section": "work",
+      "sitemap": 0.7,
+      "title": "Network Center of Gravity Tool · Harraz Mohd Reza",
+      "description": "A custom ArcGIS Pro geoprocessing tool that finds the optimal central location for a workforce, runtime cut from over an hour to minutes.",
+      "ogTitle": "Network Center of Gravity Tool · Harraz Mohd Reza",
+      "ogDescription": "A workforce-location optimizer; hour-long runs cut to minutes.",
+      "footnote": "Client anonymized. Figures reflect real runs; sample details generalized."
+    },
+    {
+      "slug": "case-study-priority-dashboard",
+      "template": "fragment",
+      "section": "work",
+      "sitemap": 0.7,
+      "title": "Multi-Gate Priority Dashboard · Harraz Mohd Reza",
+      "description": "A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers, refreshed daily.",
+      "ogTitle": "Multi-Gate Priority Dashboard · Harraz Mohd Reza",
+      "ogDescription": "A Power BI dashboard that ranks an entire construction pipeline into four actionable tiers, automatically, every day.",
+      "footnote": "All names, counts, codes, and URLs are fictional and for demonstration only."
+    },
+    {
+      "slug": "moonshot",
+      "template": "fragment",
+      "section": null,
+      "unlisted": true,
+      "title": "Project Cartographer · Harraz Mohd Reza",
+      "description": "A moonshot proposal. The moonshot is a hire. Harraz Mohd Reza, de-risked from both the technical and business perspectives.",
+      "ogTitle": "Project Cartographer · Harraz Mohd Reza",
+      "ogDescription": "A moonshot proposal. The moonshot is a hire. Five risks, opened one at a time.",
+      "footnote": "Project Cartographer · Trajectory: Los Angeles to Mountain View",
+      "robots": "noindex,follow"
+    },
+    {
+      "slug": "404",
+      "template": "fragment",
+      "section": null,
+      "noindex": true,
+      "noCanonical": true,
+      "title": "Off the map · Harraz Mohd Reza"
+    }
+  ]
+}

@@ -7,6 +7,7 @@
 <meta name="description" content="Field notes on GIS, automation, data systems, and working with AI, short, practical lessons from real builds.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#EAE6DA">
 <link rel="canonical" href="https://harrazmohdreza.com/notes.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
@@ -18,96 +19,60 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harrazmohdreza.com/og-image.png">
+<meta name="twitter:title" content="Notes · Harraz Mohd Reza">
+<meta name="twitter:description" content="Field notes on GIS, automation, data systems, and working with AI.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
-  <div class="wrap topbar__inner">
-    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
-    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav">
+  <div class="wrap"><div class="topbar__inner">
+    <a href="index.html" class="wordmark"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1.5" y="1.5" width="29" height="29" rx="8"/><path d="M7 21c3-1.5 4-6 8.5-6S21 19 25 17"/><circle cx="16" cy="10" r="2.6"/></svg><span>Harraz Mohd Reza</span></a>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Primary">
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
       <a href="notes.html" aria-current="page">Notes</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="nav__cta">Let’s talk</a>
     </nav>
-  </div>
+  </div></div>
 </header>
+<main id="main">
+<section class="phero"><div class="wrap">
+    <p class="kicker">Field log</p>
+    <h1>Lessons from the field.</h1>
+    <p class="deck">Short, practical notes from real builds, what broke, what fixed it, and what I'd tell you before you hit the same wall. Updated as the work teaches me.</p>
+  </div></section>
+  <section class="section section--tight" aria-label="Field notes"><div class="wrap">
+    <ul class="nlist"><li><a class="ncard" href="note-directing-ai.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg><span><h2 class="ncard__title">Directing AI, not just prompting it</h2><span class="ncard__meta">AI in practice, judgment and governance</span><span class="ncard__desc">Everyone can get an answer out of an AI now, so the answer was never the value. My rules for when to lean on it, when a human stays in the loop, and how I keep accountability for every number that reaches a decision.</span></span><span class="pcard__go">Read the note</span></a></li><li><a class="ncard" href="note-cog-iterations.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg><span><h2 class="ncard__title">Thirteen iterations: what a 53-million-candidate bug taught me</h2><span class="ncard__meta">Python and arcpy, AI-assisted engineering</span><span class="ncard__desc">The most expensive defect in my Center of Gravity tool was invisible in code review, it only appeared when the tool met real data. Notes on iterative execution, primary sources, and directing AI as an engineering partner.</span></span><span class="pcard__go">Read the note</span></a></li></ul>
+    <p class="outro">More notes in progress, this log grows as the work does.</p>
+  </div></section>
 
-<main>
-  <section class="hero gridfield study">
-    <div class="wrap">
-      <p class="hero__kicker"><span class="sq"></span>Notes · Field log</p>
-      <h1>Lessons from the field.</h1>
-      <p class="deck">Short, practical notes from real builds, what broke, what fixed it, and what I'd tell you before you hit the same wall. Updated as the work teaches me.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="worklist" style="border-top:none;margin-top:0;">
-
-        <a class="workcard" href="note-directing-ai.html">
-          <span class="workcard__idx">01</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Directing AI, not just prompting it</span>
-            <span class="workcard__meta">Field note · AI in practice · Judgment &amp; governance</span>
-            <span class="workcard__desc">Everyone can get an answer out of an AI now, so the answer was never the value. My rules for when to lean on it, when a human stays in the loop, and how I keep accountability for every number that reaches a decision.</span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-        <a class="workcard" href="note-cog-iterations.html">
-          <span class="workcard__idx">02</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Thirteen iterations: what a 53-million-candidate bug taught me</span>
-            <span class="workcard__meta">Field note · Python / arcpy · AI-assisted engineering</span>
-            <span class="workcard__desc">The most expensive defect in my Center of Gravity tool was invisible in code review, it only appeared when the tool met real data. Notes on iterative execution, primary sources, and directing AI as an engineering partner.</span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-      </div>
-      <p class="soft mt-l" style="font-family:var(--font-mono);font-size:.78rem;letter-spacing:.04em;">More notes in progress, this log grows as the work does.</p>
-    </div>
-  </section>
-
-  <section class="wrap ctaband">
-    <div class="ctaband__inner">
-      <div class="gridfield"></div>
-      <h2>Working through something similar?</h2>
-      <p>If one of these notes maps onto a problem you're wrestling with, I'd genuinely like to hear about it.</p>
-      <div class="ctaband__actions">
-        <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
-      </div>
-    </div>
-  </section>
+  <section class="section" aria-labelledby="h-cta"><div class="wrap"><div class="ctapanel">
+    <div><h2 id="h-cta">Working through something similar?</h2><p>If one of these notes maps onto a problem you're wrestling with, I'd genuinely like to hear about it.</p></div>
+    <a class="btn btn--accent" href="contact.html">Start a conversation</a>
+  </div></div></section>
 </main>
-
 <footer class="foot">
   <div class="wrap">
     <div class="foot__inner">
-      <div class="foot__brand">
-        <a href="index.html" class="wordmark" style="font-size:.82rem;"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
-        <p class="soft" style="font-size:.9rem;margin-top:14px;max-width:34ch;">Connecting disparate data systems into one source of business-critical truth.</p>
-      </div>
-      <div><h4>Site</h4><ul><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
+      <div class="foot__brand"><p class="foot__name">Harraz Mohd Reza</p><p class="foot__line">Connecting disparate data systems into one source of business-critical truth.</p></div>
+      <nav class="foot__nav" aria-label="Footer"><a href="work.html">Work</a><a href="about.html">About</a><a href="notes.html">Notes</a><a href="contact.html">Contact</a><a href="https://github.com/HMR88">GitHub</a><a href="https://www.linkedin.com/in/harraz-mohd-reza-303634b6/">LinkedIn</a></nav>
     </div>
     <div class="foot__base">
       <span>© <span data-year>2026</span> Harraz Mohd Reza · harrazmohdreza.com</span>
+      
       <span>Built to connect.</span>
     </div>
   </div>
 </footer>
-<script src="main.js"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>

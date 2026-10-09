@@ -4,35 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Off the map · Harraz Mohd Reza</title>
-<meta name="robots" content="noindex">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EAE6DA">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-48.png" type="image/png">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
-  <div class="wrap topbar__inner">
-    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
-    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav">
+  <div class="wrap"><div class="topbar__inner">
+    <a href="index.html" class="wordmark"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1.5" y="1.5" width="29" height="29" rx="8"/><path d="M7 21c3-1.5 4-6 8.5-6S21 19 25 17"/><circle cx="16" cy="10" r="2.6"/></svg><span>Harraz Mohd Reza</span></a>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Primary">
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
       <a href="notes.html">Notes</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="nav__cta">Let’s talk</a>
     </nav>
-  </div>
+  </div></div>
 </header>
-
-<main>
-  <section class="hero gridfield">
+<main id="main">
+<section class="hero gridfield">
     <div class="wrap" style="padding-top:clamp(60px,10vw,110px);padding-bottom:clamp(60px,10vw,110px);">
       <p class="hero__kicker"><span class="sq"></span>404 · Coordinates not found</p>
       <h1 style="max-width:14ch;">Off the map.</h1>
@@ -44,15 +44,19 @@
     </div>
   </section>
 </main>
-
 <footer class="foot">
   <div class="wrap">
-    <div class="foot__base" style="border-top:none;">
+    <div class="foot__inner">
+      <div class="foot__brand"><p class="foot__name">Harraz Mohd Reza</p><p class="foot__line">Connecting disparate data systems into one source of business-critical truth.</p></div>
+      <nav class="foot__nav" aria-label="Footer"><a href="work.html">Work</a><a href="about.html">About</a><a href="notes.html">Notes</a><a href="contact.html">Contact</a><a href="https://github.com/HMR88">GitHub</a><a href="https://www.linkedin.com/in/harraz-mohd-reza-303634b6/">LinkedIn</a></nav>
+    </div>
+    <div class="foot__base">
       <span>© <span data-year>2026</span> Harraz Mohd Reza · harrazmohdreza.com</span>
+      
       <span>Built to connect.</span>
     </div>
   </div>
 </footer>
-<script src="main.js"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>

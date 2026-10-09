@@ -91,14 +91,17 @@
       biz:"Analysts read the market at a glance, with no exports and no extra tools. The full walkthrough shows how I fit rich analytics inside the map itself, so the answer lives where the question gets asked."},
     p_cog:{t:"Center of Gravity tool",type:"proof",p:"ai",url:"case-study-cog-tool.html",
       d:"Case study: a workforce location optimizer that cut hour-long runs down to minutes. Proof of how I diagnose, iterate, and harden a tool for production.",
-      biz:"Site decisions in minutes, backed by real drive-time analysis. Read the full story to see the thirteen iterations it took, because tried and true does not happen on the first draft."}
+      biz:"Site decisions in minutes, backed by real drive-time analysis. Read the full story to see the thirteen iterations it took, because tried and true does not happen on the first draft."},
+    p_priority:{t:"Priority dashboard",type:"proof",p:"ai",url:"case-study-priority-dashboard.html",
+      d:"Case study: a Power BI system that merges three source systems and ranks an entire construction pipeline into four actionable tiers. Proof of how I model messy data into one view people trust.",
+      biz:"Managers know which communities are ready to build every morning, without sorting a spreadsheet. Read the case study to see the gate logic and the validation that earned leadership's trust in the numbers."}
   };
   var TREE={
     discover:["u_req","u_metrics","u_data","u_verify"],
     design:["d_arch","d_model","d_integrate","d_analysis"],
     build:["b_auto","b_bi","b_apps","b_carto"],
     operate:["r_story","r_decisions","r_impact","r_govern"],
-    ai:["p_routing","p_popups","p_cog"]
+    ai:["p_routing","p_popups","p_cog","p_priority"]
   };
   var CROSS=[
     ["u_metrics","r_impact"],["u_data","d_integrate"],["u_req","r_story"],
@@ -106,7 +109,8 @@
     ["b_bi","r_story"],["r_decisions","r_story"],["b_apps","b_bi"],
     ["foundation","d_analysis"],["foundation","u_verify"],["foundation","d_arch"],
     ["ai","b_auto"],["ai","d_analysis"],["ai","u_verify"],["ai","b_bi"],
-    ["p_routing","b_auto"],["p_popups","b_bi"],["p_popups","b_apps"],["p_cog","d_analysis"],["p_cog","b_auto"]
+    ["p_routing","b_auto"],["p_popups","b_bi"],["p_popups","b_apps"],["p_cog","d_analysis"],["p_cog","b_auto"],
+    ["p_priority","b_bi"],["p_priority","d_model"],["p_priority","u_metrics"],["p_priority","r_decisions"]
   ];
 
   /* ---------- shell markup ---------- */
@@ -148,15 +152,16 @@
   });
 
   var cv=document.createElement("canvas").getContext("2d");
-  function fontStr(fs,fw){return fw+" "+fs+'px "Hanken Grotesk", sans-serif';}
+  var FONT=getComputedStyle(root).fontFamily||"sans-serif";
+  function fontStr(fs,fw){return fw+" "+fs+"px "+FONT;}
   function wrap(str,max){var w=str.split(" "),ln=[],c="";for(var i=0;i<w.length;i++){var t=c?c+" "+w[i]:w[i];if(t.length>max&&c){ln.push(c);c=w[i];}else c=t;}if(c)ln.push(c);return ln;}
   function styleFor(n){
-    if(n.type==="center")return{fs:16,fw:600,max:14,fill:"#17150F",stroke:"#F26A1B",col:"#F4EFE5",sw:2.5,padx:20,pady:13};
-    if(n.type==="lens")return{fs:16,fw:700,max:12,fill:"#F4EFE5",stroke:"#17150F",col:"#17150F",sw:2,padx:20,pady:13};
-    if(n.type==="ai")return{fs:14,fw:700,max:12,fill:"#17150F",stroke:"#F26A1B",col:"#F4EFE5",sw:2.5,padx:16,pady:11};
-    if(n.type==="foundation")return{fs:12.5,fw:600,max:16,fill:"#F4EFE5",stroke:"#8A8068",col:"#4E4938",sw:1.5,dash:true,padx:14,pady:10};
-    if(n.type==="proof")return{fs:12.5,fw:600,max:16,fill:"#fff",stroke:"#F26A1B",col:"#17150F",sw:1.5,padx:14,pady:9,proof:true};
-    return{fs:12.5,fw:500,max:17,fill:"#fff",stroke:"#BCB199",col:"#4E4938",sw:1,padx:13,pady:9};
+    if(n.type==="center")return{fs:16,fw:600,max:14,sw:2.5,padx:20,pady:13};
+    if(n.type==="lens")return{fs:16,fw:700,max:12,sw:2,padx:20,pady:13};
+    if(n.type==="ai")return{fs:14,fw:700,max:12,sw:2.5,padx:16,pady:11};
+    if(n.type==="foundation")return{fs:12.5,fw:600,max:16,sw:1.5,dash:true,padx:14,pady:10};
+    if(n.type==="proof")return{fs:12.5,fw:600,max:16,sw:1.5,padx:14,pady:9,proof:true};
+    return{fs:12.5,fw:500,max:17,sw:1,padx:13,pady:9};
   }
   Object.keys(N).forEach(function(id){
     var n=N[id],s=styleFor(n);n.lines=wrap(n.t,s.max);
@@ -204,12 +209,12 @@
     });
     Object.keys(N).forEach(function(id){var n=N[id],s=n.s;
       var rx=(-n.bw/2).toFixed(1),ry=(-n.bh/2).toFixed(1),lh=s.fs*1.24;
-      var inner='<rect class="chip" x="'+rx+'" y="'+ry+'" rx="10" width="'+n.bw.toFixed(1)+'" height="'+n.bh.toFixed(1)+'" fill="'+s.fill+'" stroke="'+s.stroke+'" stroke-width="'+s.sw+'"'+(s.dash?' stroke-dasharray="4 4"':'')+'/>';
+      var inner='<rect class="chip" x="'+rx+'" y="'+ry+'" rx="10" width="'+n.bw.toFixed(1)+'" height="'+n.bh.toFixed(1)+'" stroke-width="'+s.sw+'"'+(s.dash?' stroke-dasharray="4 4"':'')+'/>';
       var ty=(-n.bh/2)+s.pady+s.fs*0.82;
-      n.lines.forEach(function(ln,i){inner+='<text x="0" y="'+(ty+i*lh).toFixed(1)+'" text-anchor="middle" font-size="'+s.fs+'" font-weight="'+s.fw+'" fill="'+s.col+'">'+esc(ln)+'</text>';});
-      if(TREE[id]){inner+='<circle cx="'+(n.bw/2-2).toFixed(1)+'" cy="'+(-n.bh/2+2).toFixed(1)+'" r="9" fill="'+(n.type==="ai"?"#F26A1B":"#17150F")+'"/><text class="ind" x="'+(n.bw/2-2).toFixed(1)+'" y="'+(-n.bh/2+5.5).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#ECE6DA">+</text>';}
-      if(s.proof){inner+='<text x="'+(n.bw/2-11).toFixed(1)+'" y="'+(-n.bh/2+n.s.pady+n.s.fs*0.82).toFixed(1)+'" text-anchor="middle" font-size="12" fill="#C24B08">↗</text>';}
-      if(n.type==="ai"){inner+='<text x="0" y="'+(n.bh/2+14).toFixed(1)+'" text-anchor="middle" font-size="10" letter-spacing="2" fill="#C24B08">★ STANDOUT</text>';}
+      n.lines.forEach(function(ln,i){inner+='<text x="0" y="'+(ty+i*lh).toFixed(1)+'" text-anchor="middle" font-size="'+s.fs+'" font-weight="'+s.fw+'">'+esc(ln)+'</text>';});
+      if(TREE[id]){inner+='<circle cx="'+(n.bw/2-2).toFixed(1)+'" cy="'+(-n.bh/2+2).toFixed(1)+'" r="9"/><text class="ind" x="'+(n.bw/2-2).toFixed(1)+'" y="'+(-n.bh/2+5.5).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="700">+</text>';}
+      if(s.proof){inner+='<text x="'+(n.bw/2-11).toFixed(1)+'" y="'+(-n.bh/2+n.s.pady+n.s.fs*0.82).toFixed(1)+'" text-anchor="middle" font-size="12" class="arr">↗</text>';}
+      if(n.type==="ai"){inner+='<text x="0" y="'+(n.bh/2+14).toFixed(1)+'" text-anchor="middle" font-size="11" class="sto">★ Standout</text>';}
       ng+='<g class="node n-'+n.type+'" data-id="'+id+'" transform="translate('+n.x.toFixed(1)+','+n.y.toFixed(1)+')"><g class="box">'+inner+'</g></g>';
     });
     svg.innerHTML='<g class="links">'+lg+'</g><g class="nodes">'+ng+'</g>';

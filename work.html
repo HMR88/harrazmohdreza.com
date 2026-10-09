@@ -7,6 +7,7 @@
 <meta name="description" content="Case studies in geospatial analytics, workflow automation, and custom tooling.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#EAE6DA">
 <link rel="canonical" href="https://harrazmohdreza.com/work.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harraz Mohd Reza">
@@ -25,124 +26,77 @@
 <link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
-  <div class="wrap topbar__inner">
-    <a href="index.html" class="wordmark"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
-    <button class="navtoggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav">
+  <div class="wrap"><div class="topbar__inner">
+    <a href="index.html" class="wordmark"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1.5" y="1.5" width="29" height="29" rx="8"/><path d="M7 21c3-1.5 4-6 8.5-6S21 19 25 17"/><circle cx="16" cy="10" r="2.6"/></svg><span>Harraz Mohd Reza</span></a>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Primary">
       <a href="work.html" aria-current="page">Work</a>
       <a href="about.html">About</a>
       <a href="notes.html">Notes</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="nav__cta">Let’s talk</a>
     </nav>
-  </div>
+  </div></div>
 </header>
+<main id="main">
+<section class="phero"><div class="wrap">
+    <p class="kicker">Selected case studies</p>
+    <h1>Connecting the disconnected.</h1>
+    <p class="deck">Each project below started the same way: data and systems that described the same reality but never met. Here’s how I bridged them.</p>
+  </div></section>
+  <section class="section section--tight" aria-label="Case studies"><div class="wrap">
+    <ul class="pgrid"><li><a class="pcard" href="case-study-routing-automation.html">
+    <span class="pcard__top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h6.5l4.5-6h8M9 12l4.5 6h8M18.5 3l3 3-3 3M18.5 15l3 3-3 3"/></svg><span class="dot dot--aqua" aria-hidden="true"></span></span>
+    <h2 class="pcard__title">Conditional Notification &amp; Routing Automation</h2>
+    <p class="pcard__desc">An event-driven flow that filters new records and routes each notification to the right reviewer, with a fallback so nothing gets dropped. It includes a live router you can operate yourself.</p>
+    <span class="pills" aria-label="Tools"><span>Power Automate</span><span>SharePoint</span><span>Expressions</span></span>
+    <span class="pcard__foot"><dl class="readout"><div><dt>0</dt><dd>manual triage steps</dd></div><div><dt>&lt;1s</dt><dd>to route a record</dd></div></dl><span class="pcard__go">Read the case study</span></span>
+  </a></li><li><a class="pcard" href="case-study-arcgis-popups.html">
+    <span class="pcard__top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21s-5.5-5-5.5-9.5a5.5 5.5 0 0 1 11 0C13.5 16 8 21 8 21z"/><circle cx="8" cy="11.5" r="2"/><path d="M17 15v-4M19.5 15V7M22 15v-6"/></svg><span class="dot dot--heat" aria-hidden="true"></span></span>
+    <h2 class="pcard__title">Interactive ArcGIS Map Popups</h2>
+    <p class="pcard__desc">Data-driven popups with embedded charts, growth analytics, and talent profiles, all rendered inside the map with zero external dependencies.</p>
+    <span class="pills" aria-label="Tools"><span>ArcGIS Arcade</span><span>H3 hexes</span><span>SVG</span></span>
+    <span class="pcard__foot"><dl class="readout"><div><dt>11</dt><dd>years of data per click</dd></div><div><dt>0</dt><dd>external dependencies</dd></div></dl><span class="pcard__go">Read the case study</span></span>
+  </a></li><li><a class="pcard" href="case-study-cog-tool.html">
+    <span class="pcard__top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/><circle cx="4.5" cy="5" r=".9"/><circle cx="19.5" cy="6" r=".9"/><circle cx="5.5" cy="19" r=".9"/><circle cx="18.5" cy="18.5" r=".9"/></svg><span class="dot dot--rust" aria-hidden="true"></span></span>
+    <h2 class="pcard__title">Network Center of Gravity Tool</h2>
+    <p class="pcard__desc">A custom geoprocessing tool that finds the best central location for a workforce. I cut the runtime from over an hour to a few minutes by finding and removing a defect that generated 53 million candidate locations.</p>
+    <span class="pills" aria-label="Tools"><span>ArcGIS Pro</span><span>Python</span><span>arcpy</span><span>Network Analyst</span></span>
+    <span class="pcard__foot"><dl class="readout"><div><dt>1hr → min</dt><dd>runtime per analysis</dd></div><div><dt>13.7B → 51.8K</dt><dd>OD matrix pairs</dd></div></dl><span class="pcard__go">Read the case study</span></span>
+  </a></li><li><a class="pcard" href="case-study-priority-dashboard.html">
+    <span class="pcard__top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10.5h12M4 15h8M4 19.5h4"/></svg><span class="dot dot--ink" aria-hidden="true"></span></span>
+    <h2 class="pcard__title">Multi-Gate Priority Dashboard</h2>
+    <p class="pcard__desc">A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers, refreshed daily and emailed to each manager every week.</p>
+    <span class="pills" aria-label="Tools"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Power Automate</span></span>
+    <span class="pcard__foot"><dl class="readout"><div><dt>3,600+</dt><dd>communities ranked daily</dd></div><div><dt>3</dt><dd>source systems unified</dd></div></dl><span class="pcard__go">Read the case study</span></span>
+  </a></li></ul>
+    <p class="outro">More case studies in progress, this portfolio is actively growing.</p>
+  </div></section>
 
-<main>
-  <section class="hero gridfield">
-    <div class="wrap">
-      <p class="hero__kicker"><span class="sq"></span>Work · Selected case studies</p>
-      <h1>Connecting the <span class="o">disconnected</span>.</h1>
-      <p class="deck">Each project below started the same way: data and systems that described the same reality but never met. Here’s how I bridged them.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="worklist" style="border-top:none;margin-top:0;">
-
-        <a class="workcard" href="case-study-routing-automation.html">
-          <span class="workcard__idx">01</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Conditional Notification &amp; Routing Automation</span>
-            <span class="workcard__meta">Power Automate · Cloud flow</span>
-            <span class="workcard__desc">An event-driven flow that filters new records and routes each notification to the right reviewer, with a fallback so nothing is dropped. Includes a live router you can operate.</span>
-            <span class="tagrow">
-              <span class="tag">Power Automate</span><span class="tag">SharePoint</span><span class="tag">Expressions</span><span class="tag">Routing logic</span>
-            </span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-        <a class="workcard" href="case-study-arcgis-popups.html">
-          <span class="workcard__idx">02</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Interactive ArcGIS Map Popups</span>
-            <span class="workcard__meta">ArcGIS Arcade</span>
-            <span class="workcard__desc">Data-driven popups with embedded bar charts, growth analytics, and workforce talent profiles, rendered entirely inside ArcGIS with zero external dependencies.</span>
-            <span class="tagrow">
-              <span class="tag">ArcGIS Arcade</span><span class="tag">Data viz</span><span class="tag">H3 hexes</span><span class="tag">SVG</span>
-            </span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-        <a class="workcard" href="case-study-cog-tool.html">
-          <span class="workcard__idx">03</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Network Center of Gravity Tool</span>
-            <span class="workcard__meta">ArcGIS Pro · Python</span>
-            <span class="workcard__desc">A custom geoprocessing tool that finds the optimal central location for a workforce, runtime cut from over an hour to a few minutes by diagnosing a 53-million-candidate defect.</span>
-            <span class="tagrow">
-              <span class="tag">Python</span><span class="tag">arcpy</span><span class="tag">Network Analyst</span><span class="tag">Optimization</span>
-            </span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-        <a class="workcard" href="case-study-priority-dashboard.html">
-          <span class="workcard__idx">04</span>
-          <span class="workcard__main">
-            <span class="workcard__title">Multi-Gate Priority Dashboard</span>
-            <span class="workcard__meta">Power BI · DAX</span>
-            <span class="workcard__desc">A Power BI reporting system that merges three source systems, scores every community against two readiness gates, and ranks an entire construction pipeline into four actionable tiers, refreshed daily and emailed to each manager every week.</span>
-            <span class="tagrow">
-              <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Power Automate</span>
-            </span>
-          </span>
-          <span class="workcard__go">Read →</span>
-        </a>
-
-      </div>
-
-      <p class="soft mt-l" style="font-family:var(--font-mono);font-size:.78rem;letter-spacing:.04em;">More case studies in progress, this portfolio is actively growing.</p>
-    </div>
-  </section>
-
-  <section class="wrap ctaband">
-    <div class="ctaband__inner">
-      <div class="gridfield"></div>
-      <h2>Want this kind of work on your data?</h2>
-      <p>Tell me where your systems are disconnected. I’ll show you what one cohesive system could surface.</p>
-      <div class="ctaband__actions">
-        <a href="contact.html" class="btn btn--screen">Start a conversation →</a>
-      </div>
-    </div>
-  </section>
+  <section class="section" aria-labelledby="h-cta"><div class="wrap"><div class="ctapanel">
+    <div><h2 id="h-cta">Want this kind of work on your data?</h2><p>Tell me where your systems are disconnected. I’ll show you what one cohesive system could surface.</p></div>
+    <a class="btn btn--accent" href="contact.html">Start a conversation</a>
+  </div></div></section>
 </main>
-
 <footer class="foot">
   <div class="wrap">
     <div class="foot__inner">
-      <div class="foot__brand">
-        <a href="index.html" class="wordmark" style="font-size:.82rem;"><span class="wordmark__dot"></span>Harraz Mohd Reza</a>
-        <p class="soft" style="font-size:.9rem;margin-top:14px;max-width:34ch;">Connecting disparate data systems into one source of business-critical truth.</p>
-      </div>
-      <div><h4>Site</h4><ul><li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="notes.html">Notes</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/HMR88">GitHub ↗</a></li><li><a href="contact.html">Send a note</a></li></ul></div>
+      <div class="foot__brand"><p class="foot__name">Harraz Mohd Reza</p><p class="foot__line">Connecting disparate data systems into one source of business-critical truth.</p></div>
+      <nav class="foot__nav" aria-label="Footer"><a href="work.html">Work</a><a href="about.html">About</a><a href="notes.html">Notes</a><a href="contact.html">Contact</a><a href="https://github.com/HMR88">GitHub</a><a href="https://www.linkedin.com/in/harraz-mohd-reza-303634b6/">LinkedIn</a></nav>
     </div>
     <div class="foot__base">
       <span>© <span data-year>2026</span> Harraz Mohd Reza · harrazmohdreza.com</span>
+      
       <span>Built to connect.</span>
     </div>
   </div>
 </footer>
-<script src="main.js"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>

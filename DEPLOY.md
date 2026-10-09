@@ -14,29 +14,10 @@ Estimated time: ~20 minutes of work, then up to 24h for DNS to fully settle
 All site files must sit at the **root** of the repo, with `index.html`
 at the top level (not inside a subfolder).
 
-Files to commit:
-```
-index.html
-about.html
-work.html
-contact.html
-notes.html
-note-cog-iterations.html
-case-study-routing-automation.html
-case-study-arcgis-popups.html
-case-study-cog-tool.html
-styles.css
-main.js
-mindmap.js
-404.html
-robots.txt
-sitemap.xml
-favicon.svg
-favicon-48.png
-favicon-180.png
-og-image.png
-CNAME
-```
+Files to commit: everything in the repo. The root `.html` files, `styles.css`, `main.js`,
+`mindmap.js`, `assets/`, favicons, `og-image.png`, `robots.txt`, `sitemap.xml`, and `CNAME` are
+the published site. `src/`, `tools/`, and the `.md` docs are kept out of the published site
+by `_config.yml`.
 (You can also keep `DEPLOY.md` and `CLAUDE.md` in the repo — they won't affect the site.
 The `CNAME` file holds your custom domain and is added automatically when you set it
 in Settings → Pages; it's committed here too so the domain survives any re-deploy.)
@@ -110,7 +91,8 @@ Visit **https://harrazmohdreza.com** — it should load your site, and
 
 ## Part D — Updating the site later
 
-Any change is just: edit the file → commit → push. GitHub Pages redeploys in ~1 minute.
+Any change is: edit `src/site.json` or `src/pages/`, run `node tools/build.mjs`, then commit → push.
+GitHub Pages redeploys in about a minute. Never hand-edit the root `.html` files; the build overwrites them.
 This is exactly the loop Claude Code is built for (see `CLAUDE.md`).
 
 ---

@@ -1,0 +1,9 @@
+# GitHub Pages: publish only the built site. Internal docs and build sources stay private.
+exclude:
+  - CLAUDE.md
+  - DEPLOY.md
+  - GETTING-STARTED.md
+  - CHANGELOG.md
+  - src
+  - tools
+  - README.md
